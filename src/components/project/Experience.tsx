@@ -71,6 +71,7 @@ export function Experience() {
       <div className="flex justify-center items-center py-10">
         <SectionHeadings
           title="The Family Legacy"
+          seoTitle="Skills & Tech Stack"
           description="Respect earned over time."
         />
       </div>

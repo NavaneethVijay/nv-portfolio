@@ -5,13 +5,38 @@ import { getAllPosts, getBlogPost } from "@/lib/contentful";
 import parsedContent from "@/components/parsedContent";
 import { IconArrowBack, IconBackhoe } from "@tabler/icons-react";
 
+function extractPlainText(node: any): string {
+  if (!node) return "";
+  if (typeof node.value === "string") return node.value;
+  if (Array.isArray(node.content)) {
+    return node.content.map(extractPlainText).join(" ");
+  }
+  return "";
+}
+
+function toMetaDescription(json: any): string {
+  const text = extractPlainText(json).replace(/\s+/g, " ").trim();
+  return text.length > 155 ? `${text.slice(0, 155).trim()}…` : text;
+}
+
 export default function BlogPostPage({ post }: any) {
   if (!post) return null;
+
+  const description = toMetaDescription(post.content.json);
+  const url = `https://www.navaneethvijay.in/blog/${post.path}`;
 
   return (
     <>
       <Head>
         <title>{post.title} | Navaneeth Vijay</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={url} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={url} />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={description} />
       </Head>
 
       <div className="mt-20">

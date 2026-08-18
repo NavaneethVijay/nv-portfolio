@@ -62,9 +62,9 @@ export default function App({ Component, pageProps }: AppProps) {
       className={`${font.variable} ${cinzel.variable} ${norican.variable} ${libreFranklin.variable}`}
     >
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>
-          Navaneeth Vijay | Full Stack Web Developer | UI/UX Design, Responsive
-          Websites
+          Navaneeth Vijay | Solution Architect & Senior Fullstack Engineer
         </title>
       </Head>
       <Script

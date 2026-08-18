@@ -14,7 +14,6 @@ const footerLinks: { [key: string]: FooterLink[] } = {
     { href: '/', text: 'Home' },
     { href: '/blog', text: 'Blog' },
     { href: '/experience', text: 'Experience' },
-    { href: '/resources', text: 'Resources' },
   ],
   social: [
     { href: 'https://github.com/NavaneethVijay', text: 'GitHub', external: true },

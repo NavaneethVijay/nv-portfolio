@@ -35,13 +35,15 @@ export default function HomePage() {
           <SectionHeadings
             id="the-family-ties"
             title="The Roots of the Journey"
+            seoTitle="About Navaneeth Vijay"
             description="Where loyalty meets ambition, the story begins."
           />
           <div className="relative">
             <img
               className="absolute top-1/4 left-0 opacity-30 "
               src="/strings.png"
-              alt="family"
+              alt=""
+              aria-hidden="true"
             />
             <div className="max-w-4xl mx-auto">
               <div className="text-lg dark:text-neutral-300  text-neutral-500 mt-10 font-libre-franklin">
@@ -76,7 +78,7 @@ export default function HomePage() {
                     style={{ height: "232px" }}
                     className="object-cover w-full h-90 rounded-xl overflow-hidden flex items-stretch"
                     src="/bangalore.png"
-                    alt="family"
+                    alt="Bangalore skyline, where Navaneeth Vijay is based"
                   />
                 </div>
                 <div className="col-span-2 md:hidden">
@@ -84,7 +86,7 @@ export default function HomePage() {
                     style={{ height: "232px" }}
                     className="object-cover w-full h-90 rounded-xl overflow-hidden flex items-stretch"
                     src="/anime.jpg"
-                    alt="family"
+                    alt="Navaneeth Vijay, illustrated portrait"
                   />
                 </div>
               </div>
@@ -92,9 +94,9 @@ export default function HomePage() {
           </div>
         </section>
         <section className="max-w-6xl  mx-auto py-10 bg-neutral-900 md:rounded-xl ">
-          <h3 className="text-2xl text-center lg:text-5xl font-godfather">
+          <p className="text-2xl text-center lg:text-5xl font-godfather">
             "Instinctively conscientious and incredibly curious"
-          </h3>
+          </p>
         </section>
 
         <section className="mx-auto graph-paper py-10">
@@ -102,6 +104,7 @@ export default function HomePage() {
             <SectionHeadings
               id="the-family-business"
               title="The Family Business"
+              seoTitle="Tools I Use Every Day"
               description="Only the best tools in the business."
             />
           </div>
@@ -115,6 +118,7 @@ export default function HomePage() {
             <SectionHeadings
               id="the-portfolio-offer"
               title="The Portfolio Offer"
+              seoTitle="Portfolio & Work Samples"
               description="Projects you can’t refuse."
             />
           </div>
@@ -122,7 +126,9 @@ export default function HomePage() {
         </section>
         <section className="container mx-auto py-10">
           <SectionHeadings
+            id="the-connection-favor"
             title="The Connection Favor"
+            seoTitle="Contact Navaneeth Vijay"
             description="Let’s make an offer."
           />
           <div className="max-w-4xl mx-auto">

@@ -6,7 +6,7 @@ const Intro = () => {
       <p className="mb-4 text-sm md:text-lg font-light">
         My mum still can't explain what I do, so let me try: I’ve had the
         privilege of creating design systems, leading teams, and building
-        products with over 6 years of experience. When I'm not binge-watching TV
+        products with over 8 years of experience. When I'm not binge-watching TV
         series or playing{" "}
         <span className="font-bold">Dota 2</span>, I'm diving into the latest
         tools and technologies that shape me as a developer. I have a

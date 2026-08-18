@@ -16,11 +16,12 @@ export default function HeroSection() {
     >
       <div>
         <div>
-          <h2 className="font-cinzel relative z-20 text-4xl font-bold text-black dark:text-white font-sans tracking-tight leading-tight">
+          <p className="font-cinzel relative z-20 text-4xl font-bold text-black dark:text-white font-sans tracking-tight leading-tight">
             Hey there!
-          </h2>
+          </p>
           <h1 className="relative z-20 font-cinzel text-4xl lg:text-6xl ml-4 bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 md:py-4">
             I'm Navaneeth Vijay
+            <span className="sr-only"> — Solution Architect & Senior Fullstack Engineer</span>
           </h1>
 
           <h2 className="font-norican text-2xl md:text-4xl tracking-wide relative mx-auto inline-block text-center [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
@@ -28,11 +29,11 @@ export default function HeroSection() {
           </h2>
         </div>
         <div className="flex flex-col mt-10 gap-4">
-          <h3 className="z-20 text-lg md:text-xl dark:text-neutral-300 font-light font-libreFranklin max-w-4xl mx-auto ">
+          <p className="z-20 text-lg md:text-xl dark:text-neutral-300 font-light font-libreFranklin max-w-4xl mx-auto ">
             A practical and solutions-driven software engineer specializing in
             creating scalable, efficient systems that blend technical integrity
             with seamless user experiences.
-          </h3>
+          </p>
           <div className="flex flex-col justify-center items-center">
             <div className="relative z-20 mt-8 md:mt-10">
               <span className="font-medium py-1 border-gray-900 border-b text-base hover:text-primary md:text-lg">
@@ -63,7 +64,7 @@ export default function HeroSection() {
                     href="https://instagram.com/navneeth_vijay"
                     className="hover:text-primary"
                   >
-                    <span className="hidden">instagram</span>
+                    <span className="sr-only">Instagram</span>
                     <IconBrandInstagram />
                   </a>
                 </li>
@@ -72,7 +73,7 @@ export default function HeroSection() {
                     href="https://github.com/NavaneethVijay"
                     className="hover:text-primary"
                   >
-                    <span className="hidden">github</span>
+                    <span className="sr-only">GitHub</span>
                     <IconBrandGithub />
                   </a>
                 </li>
@@ -81,7 +82,7 @@ export default function HeroSection() {
                     href="https://twitter.com/navaneeth_V29"
                     className="hover:text-primary"
                   >
-                    <span className="hidden">twitter</span>
+                    <span className="sr-only">Twitter</span>
                     <IconBrandTwitter />
                   </a>
                 </li>
@@ -90,7 +91,7 @@ export default function HeroSection() {
                     href="https://www.linkedin.com/in/sai-navaneeth-v/"
                     className="hover:text-primary"
                   >
-                    <span className="hidden">linkedin</span>
+                    <span className="sr-only">LinkedIn</span>
                     <IconBrandLinkedin />
                   </a>
                 </li>
@@ -99,7 +100,7 @@ export default function HeroSection() {
                     href="https://codepen.io/NavaneethVijay"
                     className="hover:text-primary"
                   >
-                    <span className="hidden">codepen</span>
+                    <span className="sr-only">CodePen</span>
                     <IconBrandCodepen />
                   </a>
                 </li>

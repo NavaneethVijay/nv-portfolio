@@ -13,11 +13,13 @@ export default function BlogIndex({ posts }: { posts: any[] }) {
           name="description"
           content="Read about web development, design, and technology insights from Navaneeth Vijay"
         />
+        <link rel="canonical" href="https://www.navaneethvijay.in/blog" />
       </Head>
 
       <section className="mt-20 pt-10">
         <SectionHeadings
           title="The Family Chronicles"
+          seoTitle="Blog"
           description="Stories from the trenches of web development"
         />
       </section>
