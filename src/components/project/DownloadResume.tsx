@@ -6,7 +6,7 @@ export default function DownloadResume() {
     <a
       aria-label="Download Resume"
       title="Download Resume"
-      href="/Sai_Navaneeth_V_ Solution_Architect.pdf"
+      href="/Sai_Navaneeth_V_Profile.pdf"
       download
       className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none "
     >
