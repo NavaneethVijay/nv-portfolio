@@ -52,7 +52,7 @@ export default function Header() {
         href="/#skills"
         onClick={() => setIsOpen(false)}
         className={linkClass}
-        title="Skills — Applied AI, systems design, and full-stack engineering"
+        title="Skills: Applied AI, systems design, and full-stack engineering"
       >
         Skills
       </Link>
@@ -60,7 +60,7 @@ export default function Header() {
         href="/#work"
         onClick={() => setIsOpen(false)}
         className={linkClass}
-        title="Work — selected projects and open-source work"
+        title="Work: selected projects and open-source work"
       >
         Work
       </Link>

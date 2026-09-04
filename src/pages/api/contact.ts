@@ -34,8 +34,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       to: email,
       bcc: OWNER_EMAIL,
       subject: "Thanks for reaching out!",
-      text: `Hey!\n\nThanks for dropping your email on my portfolio — I'll get back to you soon.\n\n— Navaneeth`,
-      html: `<p>Hey!</p><p>Thanks for dropping your email on my portfolio — I'll get back to you soon.</p><p>— Navaneeth</p>`,
+      text: `Hey!\n\nThanks for dropping your email on my portfolio. I'll get back to you soon.\n\nNavaneeth`,
+      html: `<p>Hey!</p><p>Thanks for dropping your email on my portfolio. I'll get back to you soon.</p><p>Navaneeth</p>`,
     });
 
     if (error) {

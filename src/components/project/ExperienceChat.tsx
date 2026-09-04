@@ -122,7 +122,7 @@ export default function ExperienceChat({ items }: { items: ChatExperience[] }) {
         <button
           type="button"
           disabled
-          aria-label="Sending is disabled — this is a static transcript"
+          aria-label="Sending is disabled because this is a static transcript"
           className="h-9 w-9 rounded-full bg-chip border border-chip-border flex items-center justify-center text-ink-mute cursor-not-allowed shrink-0"
         >
           <IconSend2 className="h-4 w-4" />

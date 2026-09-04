@@ -16,8 +16,8 @@ const experiences: ChatExperience[] = [
       <div>
         Started my career as an Associate Software Developer in an
         e-commerce agency. Quickly adapted to Magento architecture and
-        started working on headless e-commerce projects — the foundation for
-        everything that followed.
+        started working on headless e-commerce projects, laying the
+        foundation for everything that followed.
       </div>
     ),
     stack: ["Magento", "MVC Architecture", "Vue.js", "Knockout.js"],
@@ -30,7 +30,7 @@ const experiences: ChatExperience[] = [
     description: (
       <div>
         Promoted to Senior Magento Developer as my interest in backend
-        development grew — worked on Magento module development and
+        development grew. Worked on Magento module development and
         customization alongside frontend UI, completed a certification on
         Magento Frontend, and handled multiple project deliveries while
         helping the team resolve complex UI issues.
@@ -39,7 +39,7 @@ const experiences: ChatExperience[] = [
     stack: ["React.js", "PHP", "Magento", "Team Management", "Project Estimation"],
   },
   {
-    year: "2021 — Present",
+    year: "2021 - Present",
     prompt: "And what are you focused on these days?",
     title: "Solution Architect / Technical Lead",
     company: "Codilar Technologies Pvt. Ltd.",
@@ -54,7 +54,7 @@ const experiences: ChatExperience[] = [
         velocity by 40% across engineering teams. Set high-quality
         engineering and testing standards across multiple projects, and
         mentored 10+ junior and mid-level engineers into core system
-        contributors — while architecting AI-native features such as RAG
+        contributors, all while architecting AI-native features such as RAG
         pipelines, tool-calling agents, and knowledge graphs.
       </div>
     ),
@@ -129,17 +129,17 @@ const certifications = [
   },
   {
     title:
-      "World Traveler Award (Meet Magento NY) — outstanding global architecture execution",
+      "World Traveler Award (Meet Magento NY), for outstanding global architecture execution",
     icon: <IconAward className="h-6 w-6 text-brand-text shrink-0" />,
   },
   {
     title:
-      "B2B Champ Award (Meet Magento India) — best-in-class scalable B2B enterprise infrastructure",
+      "B2B Champ Award (Meet Magento India), for best-in-class scalable B2B enterprise infrastructure",
     icon: <IconAward className="h-6 w-6 text-brand-text shrink-0" />,
   },
   {
     title:
-      "Adobe Experience Maker Award — high-performance, multi-currency localization engines",
+      "Adobe Experience Maker Award, for high-performance, multi-currency localization engines",
     icon: <IconAward className="h-6 w-6 text-brand-text shrink-0" />,
   },
 ];
@@ -156,7 +156,7 @@ export default function Experience() {
         <link rel="canonical" href="https://www.navaneethvijay.in/experience" />
       </Head>
       <h1 className="sr-only">
-        Navaneeth Vijay — Experience, Certifications, and Education
+        Navaneeth Vijay: Experience, Certifications, and Education
       </h1>
 
       <section className="mt-20 pt-10">
@@ -175,7 +175,7 @@ export default function Experience() {
         <SectionHeadings
           title="Enterprise work, up close"
           seoTitle="Key Client Engagements"
-          description="A few of the platforms I've architected for global clients — tap one to open it up."
+          description="A few of the platforms I've architected for global clients. Tap one to open it up."
         />
         <EngagementsAccordion engagements={engagements} />
       </section>

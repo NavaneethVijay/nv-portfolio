@@ -128,7 +128,7 @@ export default function HomePage() {
             id="work"
             title="A few things I'm proud of"
             seoTitle="Portfolio & Work Samples"
-            description="Some for clients, some just for fun — all built with real users in mind."
+            description="Some for clients, some just for fun, but all built with real users in mind."
           />
         </div>
         <Work />
@@ -140,7 +140,7 @@ export default function HomePage() {
           id="contact"
           title="Got something in mind?"
           seoTitle="Contact Navaneeth Vijay"
-          description="Drop your email below — I read everything."
+          description="Drop your email below. I read everything."
         />
         <div className="max-w-4xl mx-auto">
           <ContactMe />

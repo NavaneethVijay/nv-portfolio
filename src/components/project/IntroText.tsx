@@ -8,7 +8,7 @@ const Intro = () => {
         with 8+ years of experience designing, scaling, and delivering
         high-performance web platforms, multi-tenant SaaS architectures, and
         production-grade AI solutions. I like translating complex product
-        visions into scalable, composable (MACH) and microservices systems —
+        visions into scalable, composable (MACH) and microservices systems,
         and lately, building autonomous agentic tool-calling workflows and
         human-in-the-loop AI pipelines.
       </p>

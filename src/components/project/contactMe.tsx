@@ -65,7 +65,7 @@ export default function ContactMe() {
         )}
         {status === "success" && (
           <p className="text-sm text-brand-text font-body">
-            Sent! Check your inbox — I'll get back to you soon.
+            Sent! Check your inbox, I'll get back to you soon.
           </p>
         )}
         {status === "error" && (

@@ -168,7 +168,7 @@ const items = [
     ),
     description: (
       <span className="text-sm">
-        My browser of choice — tabs organized into Spaces so I don't lose my mind.
+        My browser of choice, with tabs organized into Spaces so I don't lose my mind.
       </span>
     ),
     header: <ArcBrowser />,
@@ -194,7 +194,7 @@ const items = [
     ),
     description: (
       <span className="text-sm">
-        Terminal with superpowers — command blocks and AI search built right in.
+        Terminal with superpowers, thanks to command blocks and AI search built right in.
       </span>
     ),
     header: <WarpTerminal />,
@@ -220,7 +220,7 @@ const items = [
     ),
     description: (
       <span className="text-sm">
-        One shortcut away from anything — apps, snippets, clipboard history.
+        One shortcut away from anything: apps, snippets, clipboard history.
       </span>
     ),
     header: <RayCast />,

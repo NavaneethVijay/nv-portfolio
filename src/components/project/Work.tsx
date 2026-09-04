@@ -55,7 +55,7 @@ const projects: Project[] = [
   {
     title: "BackstopJS-UI",
     description:
-      "A self-hosted visual regression testing tool built on top of BackstopJS, with a GitHub Actions pipeline that crawls a sitemap and deploys reference/test screenshots to Vercel. Built to catch visual regressions before they ship — this kind of automated gate is what let my teams push deployment velocity up 40% without trading away release confidence.",
+      "A self-hosted visual regression testing tool built on top of BackstopJS, with a GitHub Actions pipeline that crawls a sitemap and deploys reference/test screenshots to Vercel. Built to catch visual regressions before they ship. This kind of automated gate is what let my teams push deployment velocity up 40% without trading away release confidence.",
     techStack: ["Vite", "React", "Playwright", "BackstopJS"],
     githubUrl: "https://github.com/NavaneethVijay/backstopjs-visual-testing",
     logoSvg: <IconTestPipe2 className="h-6 w-6" />,
@@ -63,7 +63,7 @@ const projects: Project[] = [
   {
     title: "Self-Hosted Image Optimizer",
     description:
-      "A high-performance image optimization server inspired by Next.js's image pipeline, using GoogleChromeLabs' Squoosh under the hood to compress images on the fly. Born out of chasing page-load budgets on high-traffic platforms — the same instinct behind a 30% initial load-time improvement on production work.",
+      "A high-performance image optimization server inspired by Next.js's image pipeline, using GoogleChromeLabs' Squoosh under the hood to compress images on the fly. Born out of chasing page-load budgets on high-traffic platforms, the same instinct behind a 30% initial load-time improvement on production work.",
     techStack: ["Node.js", "Squoosh"],
     githubUrl: "https://github.com/NavaneethVijay/squoosh-image",
     logoSvg: <IconPhotoAi className="h-6 w-6" />,
