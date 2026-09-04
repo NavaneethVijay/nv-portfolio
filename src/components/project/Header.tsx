@@ -70,7 +70,7 @@ export default function Header() {
       <Link href="/experience" onClick={() => setIsOpen(false)} className={linkClass}>
         Experience
       </Link>
-      <DownloadResume />
+      <DownloadResume location="header" />
     </div>
   );
 

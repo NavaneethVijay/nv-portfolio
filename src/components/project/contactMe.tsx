@@ -1,6 +1,9 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { PlaceholdersAndVanishInput } from "../ui/placeholders-and-vanish-input";
+
+type Status = "idle" | "loading" | "success" | "error";
 
 export default function ContactMe() {
   const placeholders = [
@@ -11,13 +14,41 @@ export default function ContactMe() {
     "Just want to say hi?",
   ];
 
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const emailRef = useRef("");
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    emailRef.current = e.target.value;
   };
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitted");
+    const email = emailRef.current.trim();
+    if (!email) return;
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Something went wrong");
+      }
+
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong");
+    }
   };
+
   return (
     <div className="flex flex-col justify-center items-center px-4">
       <h3 className="text-center text-lg font-medium my-4 text-ink-soft font-body">
@@ -28,6 +59,19 @@ export default function ContactMe() {
         onChange={handleChange}
         onSubmit={onSubmit}
       />
+      <div className="h-6 mt-3">
+        {status === "loading" && (
+          <p className="text-sm text-ink-mute font-body">Sending…</p>
+        )}
+        {status === "success" && (
+          <p className="text-sm text-brand-text font-body">
+            Sent! Check your inbox — I'll get back to you soon.
+          </p>
+        )}
+        {status === "error" && (
+          <p className="text-sm text-red-500 font-body">{errorMessage}</p>
+        )}
+      </div>
     </div>
   );
 }

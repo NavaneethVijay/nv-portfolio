@@ -80,7 +80,7 @@ export default function HeroSection() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-5 mb-7">
-            <DownloadResume />
+            <DownloadResume location="hero" />
             <a
               href="mailto:sainavaneeth@gmail.com"
               className="flex items-center gap-2 text-ink-soft text-base font-medium hover:text-brand transition-colors"

@@ -116,9 +116,9 @@ html {
   :root {
     --background: 42 45% 95%;
     --foreground: 26 45% 10%;
-    --card: 40 55% 98%;
+    --card: 42 50% 95%;
     --card-foreground: 26 45% 10%;
-    --popover: 40 55% 98%;
+    --popover: 42 50% 95%;
     --popover-foreground: 26 45% 10%;
     --primary: 32 100% 65%;
     --primary-foreground: 26 45% 10%;
