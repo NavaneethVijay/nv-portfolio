@@ -4,12 +4,11 @@ import { PlaceholdersAndVanishInput } from "../ui/placeholders-and-vanish-input"
 
 export default function ContactMe() {
   const placeholders = [
-    "Got a project that needs a trusted partner?",
-    "Need a problem solved, no questions asked?",
-    "Have a project that requires finesse and precision?",
-    "Need a reliable ally to handle the heavy lifting?",
-    "Looking to make your vision an offer it can't refuse?",
-    "Ready to discuss a deal that benefits us both?",
+    "What are you building?",
+    "Got a role that needs a senior engineer?",
+    "Want to collaborate on something ambitious?",
+    "Have an AI feature you want shipped?",
+    "Just want to say hi?",
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,8 +20,8 @@ export default function ContactMe() {
   };
   return (
     <div className="flex flex-col justify-center items-center px-4">
-      <h3 className="text-center text-lg font-medium my-4 text-neutral-300 font-libreFranklin">
-        Drop in your email ID and I will get back to you.
+      <h3 className="text-center text-lg font-medium my-4 text-ink-soft font-body">
+        Drop in your email and I'll get back to you.
       </h3>
       <PlaceholdersAndVanishInput
         placeholders={placeholders}

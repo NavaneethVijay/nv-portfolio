@@ -1,40 +1,30 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import localFont from "next/font/local";
-import { Cinzel_Decorative, Norican, Libre_Franklin } from "next/font/google";
+import { Space_Grotesk, Work_Sans, Caveat } from "next/font/google";
 import Header from "@/components/project/Header";
 import Head from "next/head";
 import Footer from "@/components/project/Footer";
 import Script from "next/script";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const font = localFont({
-  src: "./fonts/Corleone.otf",
-  weight: "400",
-  style: "normal",
-  variable: "--font-godfather",
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
 });
 
-const cinzel = Cinzel_Decorative({
+const caveat = Caveat({
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  style: ["normal"],
-  variable: "--font-cinzel",
+  weight: ["500", "600", "700"],
+  variable: "--font-hand",
 });
 
-const norican = Norican({
+const workSans = Work_Sans({
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal"],
-  variable: "--font-norican",
-});
-
-const libreFranklin = Libre_Franklin({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal"],
-  variable: "--font-libre-franklin",
+  weight: ["400", "500", "600"],
+  variable: "--font-body",
 });
 
 const GA_TRACKING_ID = "G-RVL8C302NE";
@@ -58,34 +48,36 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   return (
-    <div
-      className={`${font.variable} ${cinzel.variable} ${norican.variable} ${libreFranklin.variable}`}
-    >
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-          Navaneeth Vijay | Solution Architect & Senior Fullstack Engineer
-        </title>
-      </Head>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-RVL8C302NE"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_TRACKING_ID}', {
-            page_path: window.location.pathname,
-          });
-        `}
-      </Script>
-      <Header />
-      <Component {...pageProps} />
-      <section className="pt-10">
-        <Footer />
-      </section>
-    </div>
+    <ThemeProvider>
+      <div
+        className={`${spaceGrotesk.variable} ${caveat.variable} ${workSans.variable} font-body bg-paper text-ink`}
+      >
+        <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>
+            Sai Navaneeth V | Solution Architect &amp; AI Full-Stack Engineer
+          </title>
+        </Head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RVL8C302NE"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+        <Header />
+        <Component {...pageProps} />
+        <section className="pt-10">
+          <Footer />
+        </section>
+      </div>
+    </ThemeProvider>
   );
 }

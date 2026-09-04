@@ -1,83 +1,102 @@
-import Image from "next/image";
 import React from "react";
-import { Timeline } from "@/components/ui/timeline";
 import SectionHeadings from "./SectionHeadings";
 
 export function Experience() {
-  const skillCategories = {
-    frontend: {
-      title: "Frontend Development",
+  const skillCategories: Record<
+    string,
+    { title: string; skills: string[]; featured?: boolean }
+  > = {
+    stack: {
+      title: "Modern Fullstack",
+      skills: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Hono",
+        "PostgreSQL",
+        "Supabase",
+        "Vercel",
+      ],
+      featured: true,
+    },
+    ai: {
+      title: "Applied AI Engineering",
+      skills: [
+        "LLM APIs (OpenAI, Anthropic, Gemini)",
+        "RAG & Vector Search",
+        "pgvector / Pinecone / Supabase Vector",
+        "Tool-calling Agents",
+      ],
+    },
+    commerce: {
+      title: "Enterprise Composable Commerce",
       skills: [
         "Adobe Commerce (Magento)",
-        "React.js & Next.js",
-        "Redux & Context API",
-        "Tailwind CSS",
-        "React Native for mobile apps (Expo)",
-      ],
-    },
-    backend: {
-      title: "Backend Development",
-      skills: [
-        "Node.js & Express.js",
-        "RESTful APIs",
+        "MACH Architecture",
         "GraphQL",
-        "PHP",
-        "Microservices Architecture",
-      ],
-    },
-    databases: {
-      title: "Databases & Storage",
-      skills: [
-        "MySQL & PostgreSQL",
-        "Redis Cache",
-        "Firebase, Supabase",
+        "Headless Frontends",
+        "Micro-Frontends",
       ],
     },
     devops: {
-      title: "DevOps & Cloud",
+      title: "Cloud, DevOps & Testing",
       skills: [
-        "AWS EC2",
-        "Docker & Kubernetes",
-        "CI/CD (GitHub Actions)",
-        "Version Control (Git)",
-      ],
-    },
-    tools: {
-      title: "Development Tools",
-      skills: [
-        "VS Code, IntelliJ IDEA",
-        "Postman for API testing",
-        "JIRA & Confluence",
-        "npm & yarn package managers",
+        "AWS",
+        "Docker",
+        "GitHub Actions (CI/CD)",
+        "Jest",
+        "Playwright",
+        "Storybook",
       ],
     },
   };
 
-  const SkillSection = ({ title, skills }: { title: string; skills: string[] }) => (
-    <div>
-      <h3 className="font-semibold mb-2 font-libreFranklint">{title}</h3>
-      <ul className="list-disc pl-5 ">
-        {skills.map((skill, index) => (
-          <li className="text-sm md:text-lg font-libreFranklin dark:text-neutral-300 tracking-wide font-libreFranklint" key={index}>
+  const SkillCard = ({
+    title,
+    skills,
+    featured,
+  }: {
+    title: string;
+    skills: string[];
+    featured?: boolean;
+  }) => (
+    <div
+      className={`rounded-xl border p-6 flex flex-col gap-3.5 ${
+        featured
+          ? "border-brand bg-[color-mix(in_srgb,var(--brand)_8%,var(--card))] sm:col-span-2 lg:col-span-1"
+          : "border-border bg-card"
+      }`}
+    >
+      <div className="flex items-center gap-2">
+        <div className="font-display text-[15px] font-bold text-ink">{title}</div>
+        {featured && (
+          <span className="font-hand text-brand-text text-base -rotate-2">go-to</span>
+        )}
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill) => (
+          <span
+            key={skill}
+            className="inline-flex items-center px-3 py-1.5 rounded-full bg-chip border border-chip-border text-chip-text text-[13px] font-medium"
+          >
             {skill}
-          </li>
+          </span>
         ))}
-      </ul>
+      </div>
     </div>
   );
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="flex justify-center items-center py-10">
-        <SectionHeadings
-          title="The Family Legacy"
-          seoTitle="Skills & Tech Stack"
-          description="Respect earned over time."
-        />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-        {Object.entries(skillCategories).map(([key, { title, skills }]) => (
-          <SkillSection key={key} title={title} skills={skills} />
+    <div className="max-w-5xl mx-auto">
+      <SectionHeadings
+        title="Skills, sharpened over time"
+        seoTitle="Skills & Tech Stack"
+        description="A focused toolbox, not an exhaustive one."
+      />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {Object.entries(skillCategories).map(([key, { title, skills, featured }]) => (
+          <SkillCard key={key} title={title} skills={skills} featured={featured} />
         ))}
       </div>
     </div>
