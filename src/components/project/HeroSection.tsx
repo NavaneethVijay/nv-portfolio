@@ -1,116 +1,128 @@
 import React from "react";
-import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { FlipWords } from "../ui/flip-words";
-import { Button } from "../ui/moving-border";
-import { IconBrandCodepen, IconBrandGithub, IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter, IconDownload } from "@tabler/icons-react";
-import { BackgroundBeams } from "../ui/background-beams";
+import { motion, Variants } from "framer-motion";
+import {
+  IconBrandCodepen,
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconMail,
+} from "@tabler/icons-react";
+import HeroIllustration from "./HeroIllustration";
+import DownloadResume from "./DownloadResume";
+
+// Recruiter-facing: GitHub, LinkedIn, and code portfolio only. Instagram/Twitter
+// live in the footer as a secondary, personal-touch link set.
+const socials = [
+  { href: "https://github.com/NavaneethVijay", label: "GitHub", Icon: IconBrandGithub },
+  { href: "https://www.linkedin.com/in/sai-navaneeth-v/", label: "LinkedIn", Icon: IconBrandLinkedin },
+  { href: "https://codepen.io/NavaneethVijay", label: "CodePen", Icon: IconBrandCodepen },
+];
+
+const container: Variants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+  },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 export default function HeroSection() {
-  const words = ["awesome", "difficult", "technical", "your"];
   return (
-    // <BackgroundBeamsWithCollision>
-    <div
-      className="md:h-[45rem] bg-gradient-to-b from-white to-neutral-100 dark:from-neutral-950 dark:to-black relative
-    flex flex-col gap-10 items-center w-full justify-center overflow-hidden text-center px-6 md:px-0 pt-[12rem] pb-10 md:py-10
-    "
-    >
-      <div>
-        <div>
-          <p className="font-cinzel relative z-20 text-4xl font-bold text-black dark:text-white font-sans tracking-tight leading-tight">
-            Hey there!
-          </p>
-          <h1 className="relative z-20 font-cinzel text-4xl lg:text-6xl ml-4 bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-red-500 to-yellow-500 md:py-4">
-            I'm Navaneeth Vijay
-            <span className="sr-only"> — Solution Architect & Senior Fullstack Engineer</span>
-          </h1>
+    <div className="relative overflow-hidden">
+      <div className="nv-blob w-[28rem] h-[28rem] -top-40 -right-28 bg-[radial-gradient(circle,var(--brand)_0%,transparent_70%)] opacity-30 animate-drift" />
+      <div className="nv-blob w-[26rem] h-[26rem] -bottom-48 -left-24 bg-[radial-gradient(circle,#ffcf8a_0%,transparent_70%)] opacity-40 animate-drift-alt" />
 
-          <h2 className="font-norican text-2xl md:text-4xl tracking-wide relative mx-auto inline-block text-center [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
-            I solve <FlipWords words={words} /> problems
-          </h2>
-        </div>
-        <div className="flex flex-col mt-10 gap-4">
-          <p className="z-20 text-lg md:text-xl dark:text-neutral-300 font-light font-libreFranklin max-w-4xl mx-auto ">
-            A practical and solutions-driven software engineer specializing in
-            creating scalable, efficient systems that blend technical integrity
-            with seamless user experiences.
-          </p>
-          <div className="flex flex-col justify-center items-center">
-            <div className="relative z-20 mt-8 md:mt-10">
-              <span className="font-medium py-1 border-gray-900 border-b text-base hover:text-primary md:text-lg">
-                <a href="mailto:sainavaneeth@gmail.com">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="feather feather-send inline-block mr-2"
-                  >
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                  sainavaneeth@gmail.com
+      <div className="container mx-auto px-6 md:px-0 relative z-10 pt-[9rem] pb-16 flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+        <motion.div
+          className="flex-1 min-w-0 text-center md:text-left"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div
+            variants={item}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 mb-6"
+          >
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-brand opacity-75 animate-ping" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
+            </span>
+            <span className="text-xs font-medium text-ink-soft tracking-wide">
+              Open to new projects
+            </span>
+          </motion.div>
+
+          <motion.h1
+            variants={item}
+            className="font-display text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-4"
+          >
+            Navaneeth Vijay
+          </motion.h1>
+          <motion.p
+            variants={item}
+            className="font-display text-xl sm:text-2xl font-bold text-ink mb-4"
+          >
+            Staff-level Solution Architect &amp; AI-Native Full-Stack Engineer
+          </motion.p>
+
+          <motion.p
+            variants={item}
+            className="text-lg text-ink-soft leading-relaxed max-w-xl mx-auto md:mx-0 mb-8"
+          >
+            I own <span className="text-brand-text font-semibold">systems design</span>,{" "}
+            <span className="text-brand-text font-semibold">headless commerce</span>, and{" "}
+            <span className="text-brand-text font-semibold">Applied AI architecture</span> for
+            platforms that move real business metrics.
+          </motion.p>
+
+          <motion.div
+            variants={item}
+            className="flex flex-wrap items-center justify-center md:justify-start gap-5 mb-7"
+          >
+            <DownloadResume location="hero" />
+            <a
+              href="mailto:sainavaneeth@gmail.com"
+              className="flex items-center gap-2 text-ink-soft text-base font-medium hover:text-brand transition-colors"
+            >
+              <IconMail className="h-[18px] w-[18px] text-ink-mute" />
+              sainavaneeth@gmail.com
+            </a>
+          </motion.div>
+
+          <motion.ul
+            variants={item}
+            className="flex items-center justify-center md:justify-start gap-3"
+          >
+            {socials.map(({ href, label, Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-ink-mute transition hover:-translate-y-0.5 hover:rotate-[-4deg] hover:border-brand hover:text-brand"
+                >
+                  <span className="sr-only">{label}</span>
+                  <Icon className="h-[18px] w-[18px]" />
                 </a>
-              </span>
-            </div>
-            <div>
-              <ul className="relative z-20 flex text-gray-900 dark:text-neutral-400 text-lg font-mono my-8">
-                <li className="pr-4 md:pr-8">
-                  <a
-                    href="https://instagram.com/navneeth_vijay"
-                    className="hover:text-primary"
-                  >
-                    <span className="sr-only">Instagram</span>
-                    <IconBrandInstagram />
-                  </a>
-                </li>
-                <li className="pr-4 md:pr-8">
-                  <a
-                    href="https://github.com/NavaneethVijay"
-                    className="hover:text-primary"
-                  >
-                    <span className="sr-only">GitHub</span>
-                    <IconBrandGithub />
-                  </a>
-                </li>
-                <li className="pr-4 md:pr-8">
-                  <a
-                    href="https://twitter.com/navaneeth_V29"
-                    className="hover:text-primary"
-                  >
-                    <span className="sr-only">Twitter</span>
-                    <IconBrandTwitter />
-                  </a>
-                </li>
-                <li className="pr-4 md:pr-8">
-                  <a
-                    href="https://www.linkedin.com/in/sai-navaneeth-v/"
-                    className="hover:text-primary"
-                  >
-                    <span className="sr-only">LinkedIn</span>
-                    <IconBrandLinkedin />
-                  </a>
-                </li>
-                <li className="pr-4">
-                  <a
-                    href="https://codepen.io/NavaneethVijay"
-                    className="hover:text-primary"
-                  >
-                    <span className="sr-only">CodePen</span>
-                    <IconBrandCodepen />
-                  </a>
-                </li>
-              </ul>
-            </div>
+              </li>
+            ))}
+          </motion.ul>
+        </motion.div>
+
+        <HeroIllustration />
+      </div>
+
+      <div className="hidden md:flex justify-center pb-6 relative z-10">
+        <div className="flex flex-col items-center gap-1.5 text-ink-mute">
+          <span className="text-[11px] uppercase tracking-[0.15em]">Scroll</span>
+          <div className="h-8 w-5 rounded-full border border-border flex justify-center pt-1.5">
+            <span className="h-1.5 w-1 rounded-full bg-brand animate-bounce" />
           </div>
         </div>
       </div>
-      <BackgroundBeams />
     </div>
-    // </BackgroundBeamsWithCollision>
   );
 }

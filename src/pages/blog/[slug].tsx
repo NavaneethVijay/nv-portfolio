@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { getAllPosts, getBlogPost } from "@/lib/contentful";
 import parsedContent from "@/components/parsedContent";
-import { IconArrowBack, IconBackhoe } from "@tabler/icons-react";
+import { IconArrowBack } from "@tabler/icons-react";
 
 function extractPlainText(node: any): string {
   if (!node) return "";
@@ -28,7 +28,7 @@ export default function BlogPostPage({ post }: any) {
   return (
     <>
       <Head>
-        <title>{post.title} | Navaneeth Vijay</title>
+        <title>{post.title} | Sai Navaneeth V</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={url} />
         <meta property="og:type" content="article" />
@@ -42,23 +42,25 @@ export default function BlogPostPage({ post }: any) {
       <div className="mt-20">
         <article className="container mx-auto md:py-10 px-6 md:px-4">
           <div className="mb-4">
-            <Link className="text-neutral-400 flex items-center gap-1 text-sm" href="/blog"> <IconArrowBack /> Back to Blog</Link>
+            <Link className="text-ink-mute flex items-center gap-1 text-sm hover:text-brand transition-colors" href="/blog">
+              <IconArrowBack /> Back to Blog
+            </Link>
           </div>
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-xl md:text-4xl font-bold mb-4 font-libreFranklin text-neutral-800 dark:text-neutral-200">
+            <h1 className="text-xl md:text-4xl font-bold mb-4 font-display text-ink">
               {post.title}
             </h1>
-            <div className="text-sm text-neutral-500 dark:text-neutral-400  flex gap-1">
-            <span>Navaneeth Vijay / </span>
-            <time className="block">
-              {new Date(post.publishedDate).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
+            <div className="text-sm text-ink-mute flex gap-1">
+              <span>Navaneeth Vijay / </span>
+              <time className="block">
+                {new Date(post.publishedDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
             </div>
-            <div className="max-w-none">
+            <div className="max-w-none font-body text-ink-soft mt-6">
               {parsedContent(post.content.json)}
             </div>
           </div>

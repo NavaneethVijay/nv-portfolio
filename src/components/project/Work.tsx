@@ -1,95 +1,109 @@
-import { Github, MoveRightIcon } from "lucide-react";
-import Link from "next/link";
 import React from "react";
-import SectionHeadings from "./SectionHeadings";
 import WorkCard from "./WorkCard";
 import {
-  IconAutomation,
-  IconBrandGmail,
-  IconBrandNextjs,
-  IconBrandNodejs,
+  IconBrandGithub,
+  IconBuildingSkyscraper,
   IconDatabaseDollar,
+  IconDeviceDesktop,
+  IconMailFast,
   IconPhotoAi,
-  IconPhotoSpark,
-  IconShoppingCart,
+  IconRobot,
   IconTestPipe2,
 } from "@tabler/icons-react";
 
-// Define the project type
 interface Project {
   title: string;
   description: string;
   techStack: string[];
-  githubUrl: string;
+  githubUrl?: string;
   logoSvg?: React.ReactNode;
+  tag?: string;
 }
 
-// Array of projects
 const projects: Project[] = [
   {
-    logoSvg: <IconBrandNodejs className="h-10 w-10 text-neutral-600" />,
-    title: "Self-hosted image optimizer",
+    title: "Flowmail",
     description:
-      "This project aims to provide image optimization for your projects. It is heavily inspried by Next.js Under the hood it uses Squoosh from GoogleChromeLabs All the details of the codes are available here",
-    techStack: ["Nodejs", "Javascript"],
-    githubUrl: "https://github.com/NavaneethVijay/squoosh-server",
+      "An AI email productivity platform on Cloud Run with Supabase, integrating Gmail via OAuth. A Gemini-powered feature suggests board organization and automated rules with a human-in-the-loop accept/reject workflow.",
+    techStack: ["Next.js", "Node.js", "Supabase", "Gemini API"],
+    githubUrl: "https://www.flowmail.in/",
+    logoSvg: <IconMailFast className="h-6 w-6" />,
+    tag: "live demo",
   },
   {
-    logoSvg: <IconDatabaseDollar className="h-10 w-10 text-neutral-600" />,
-    title: "Custom ecommerce cart rules generator",
+    title: "Drupal Copilot",
     description:
-      "A standalone custom ecommerce cart rules creator for marketing campaigns using node.js with PIM and OMS integrations options",
-    techStack: ["Node.js", "Redis", "Typescript", "Postgres"],
-    githubUrl: "https://github.com/NavaneethVijay/rule-engine-api",
+      "A working prototype of an LLM tool-calling agent that answers natural-language questions about a Drupal site's content and configuration, backed by a crawler that builds a searchable SQLite knowledge graph.",
+    techStack: ["Next.js", "OpenRouter", "SQLite"],
+    logoSvg: <IconRobot className="h-6 w-6" />,
   },
   {
-    logoSvg: <IconBrandGmail className="h-10 w-10 text-neutral-600" />,
-    title: "Email manager",
+    title: "Rynto",
     description:
-      "Integrate your gmail workflow into a simpler flow, manage your emails as tasks in one place",
-    techStack: ["Node.js", "Mailchimp", "Sendgrid"],
-    githubUrl: "https://github.com/NavaneethVijay/email-manager",
+      "A live property management app in daily production, designed and shipped solo. A double-entry ledger tracks balances, with tenant KYC verification and row-level-security private storage.",
+    techStack: ["Expo / React Native", "TypeScript", "Supabase", "PostgreSQL"],
+    logoSvg: <IconBuildingSkyscraper className="h-6 w-6" />,
   },
   {
-    logoSvg: <IconAutomation className="h-10 w-10 text-neutral-600" />,
-    title: "Automated Visual testing using backstopjs",
+    title: "Overwatch Node",
     description:
-      "A self-hosted visual regression testing tool built on top of BackstopJS. Perfect for catching visual regressions before deploying to production.",
-    techStack: ["Backstopjs", "Playwright", "Nodejs", "React"],
+      "A native macOS menu bar app in Swift that exposes running apps and system state over a local WebSocket server, paired with a React Native companion app for real-time switching over the local network.",
+    techStack: ["Swift", "React Native (Expo)", "WebSocket"],
+    githubUrl: "https://github.com/NavaneethVijay/Overwatch-Node",
+    logoSvg: <IconDeviceDesktop className="h-6 w-6" />,
+  },
+  {
+    title: "BackstopJS-UI",
+    description:
+      "A self-hosted visual regression testing tool built on top of BackstopJS, with a GitHub Actions pipeline that crawls a sitemap and deploys reference/test screenshots to Vercel. Built to catch visual regressions before they ship. This kind of automated gate is what let my teams push deployment velocity up 40% without trading away release confidence.",
+    techStack: ["Vite", "React", "Playwright", "BackstopJS"],
     githubUrl: "https://github.com/NavaneethVijay/backstopjs-visual-testing",
+    logoSvg: <IconTestPipe2 className="h-6 w-6" />,
   },
   {
-    logoSvg: <IconPhotoSpark className="h-10 w-10 text-neutral-600" />,
-    title: "Quotes Maker",
-    description: "Simple quote image maker using tailwindcss and Vuejs",
-    techStack: ["Vue.js", "vercel", "TailwindCSS"],
-    githubUrl: "https://github.com/NavaneethVijay/vuote-maker",
-  },
-  {
-    logoSvg: <IconShoppingCart className="h-10 w-10 text-neutral-600" />,
-    title: "Magento 2 theme with tailwindcss and alpinejs",
+    title: "Self-Hosted Image Optimizer",
     description:
-      "Magento 2 sass based theme with tailwindcss and alpinejs configuration.",
-    techStack: ["Magento 2", "TailwindCSS", "Alpinejs"],
-    githubUrl:
-      "https://github.com/NavaneethVijay/magento2-sass-tailwindcss-theme",
+      "A high-performance image optimization server inspired by Next.js's image pipeline, using GoogleChromeLabs' Squoosh under the hood to compress images on the fly. Born out of chasing page-load budgets on high-traffic platforms, the same instinct behind a 30% initial load-time improvement on production work.",
+    techStack: ["Node.js", "Squoosh"],
+    githubUrl: "https://github.com/NavaneethVijay/squoosh-image",
+    logoSvg: <IconPhotoAi className="h-6 w-6" />,
+  },
+  {
+    title: "Custom Ecommerce Cart Rules Generator",
+    description:
+      "A standalone cart rules engine built for heavy marketing campaigns, with API endpoints for direct sync with PIM and OMS systems.",
+    techStack: ["Node.js", "Redis", "PostgreSQL"],
+    githubUrl: "https://github.com/NavaneethVijay/rule-engine-api",
+    logoSvg: <IconDatabaseDollar className="h-6 w-6" />,
   },
 ];
 
 export default function Work() {
   return (
     <div className="max-w-5xl mx-auto py-10">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 px-6 md:px-0">
-        {projects.map((project, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 md:px-0">
+        {projects.map((project) => (
           <WorkCard
-            key={index}
+            key={project.title}
             title={project.title}
             description={project.description}
             href={project.githubUrl}
             technologies={project.techStack}
             logoSvg={project.logoSvg}
+            tag={project.tag ?? (project.githubUrl?.includes("github.com") ? "on github" : undefined)}
           />
         ))}
+      </div>
+      <div className="flex justify-center mt-8">
+        <a
+          href="https://github.com/NavaneethVijay"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm font-medium text-ink-soft hover:text-brand transition-colors"
+        >
+          <IconBrandGithub className="h-4 w-4" />
+          More on GitHub
+        </a>
       </div>
     </div>
   );

@@ -8,19 +8,19 @@ export default function BlogIndex({ posts }: { posts: any[] }) {
   return (
     <div className="max-w-5xl mx-auto px-6 md:px-0">
       <Head>
-        <title>Blog | Navaneeth Vijay</title>
+        <title>Blog | Sai Navaneeth V</title>
         <meta
           name="description"
-          content="Read about web development, design, and technology insights from Navaneeth Vijay"
+          content="Read about web development, AI engineering, and technology insights from Navaneeth Vijay"
         />
         <link rel="canonical" href="https://www.navaneethvijay.in/blog" />
       </Head>
 
       <section className="mt-20 pt-10">
         <SectionHeadings
-          title="The Family Chronicles"
+          title="From the blog"
           seoTitle="Blog"
-          description="Stories from the trenches of web development"
+          description="Notes on shipping software, mostly."
         />
       </section>
       <div className="py-10">
@@ -32,14 +32,14 @@ export default function BlogIndex({ posts }: { posts: any[] }) {
               className="flex flex-col space-y-1 mb-4"
             >
               <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-                <p className="text-neutral-600 dark:text-neutral-400 w-[200px] tabular-nums">
+                <p className="text-ink-mute w-[200px] tabular-nums">
                   {new Date(post.publishedDate).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
                   })}
                 </p>
-                <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
+                <p className="text-ink tracking-tight hover:text-brand transition-colors">
                   {post.title}
                 </p>
               </div>

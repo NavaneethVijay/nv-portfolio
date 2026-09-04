@@ -2,21 +2,17 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { IconFileDownload, IconHammer, IconMenu3 } from "@tabler/icons-react";
+import { IconMenu3 } from "@tabler/icons-react";
 import DownloadResume from "./DownloadResume";
-import { useRouter } from "next/navigation";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function Header() {
-  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-
-
 
   useEffect(() => {
     setIsMounted(true);
@@ -33,38 +29,48 @@ export default function Header() {
     };
   }, []);
 
-  const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-    isScrolled ? "bg-black/50 backdrop-blur-md shadow-md" : "bg-transparent"
+  const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+    isScrolled
+      ? "bg-paper/80 backdrop-blur-md border-border"
+      : "bg-transparent border-transparent"
   }`;
 
-  const linkClass = `dark:text-gray-300 text-gray-800 hover:text-gray-600 transition-colors`;
+  const linkClass = "text-ink-soft hover:text-ink transition-colors";
 
   const Logo = () => (
-    <Link href="/" className="text-2xl font-bold dark:text-white text-gray-800">
-      NV.
+    <Link href="/" className="font-display text-xl font-bold text-ink">
+      NV<span className="text-brand">.</span>
     </Link>
   );
 
   const NavLinks = () => (
-    <div className="flex flex-col md:flex-row flex-start md:items-center gap-10">
-       <Link
-        href="/"
-        onClick={() =>  setIsOpen(false)}
-        className={linkClass}
-      >
+    <div className="flex flex-col md:flex-row flex-start md:items-center gap-6 md:gap-9">
+      <Link href="/" onClick={() => setIsOpen(false)} className={linkClass}>
         Home
       </Link>
       <Link
-        href="/blog"
+        href="/#skills"
         onClick={() => setIsOpen(false)}
         className={linkClass}
+        title="Skills: Applied AI, systems design, and full-stack engineering"
       >
+        Skills
+      </Link>
+      <Link
+        href="/#work"
+        onClick={() => setIsOpen(false)}
+        className={linkClass}
+        title="Work: selected projects and open-source work"
+      >
+        Work
+      </Link>
+      <Link href="/blog" onClick={() => setIsOpen(false)} className={linkClass}>
         Blog
       </Link>
-      <Link href="/experience"  onClick={() => setIsOpen(false)} className={linkClass}>
+      <Link href="/experience" onClick={() => setIsOpen(false)} className={linkClass}>
         Experience
       </Link>
-      <DownloadResume />
+      <DownloadResume location="header" />
     </div>
   );
 
@@ -73,16 +79,17 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Logo />
         {isMounted && (
-          <>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
             {isMobile ? (
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon">
-                    <IconMenu3 className="h-6 w-6 dark:text-white text-gray-800" />
+                    <IconMenu3 className="h-6 w-6 text-ink" />
                     <span className="sr-only">Toggle menu</span>
                   </Button>
                 </SheetTrigger>
-                <SheetContent className="border-none">
+                <SheetContent className="border-none bg-paper">
                   <nav className="flex flex-col space-y-4 mt-8">
                     <NavLinks />
                   </nav>
@@ -93,7 +100,7 @@ export default function Header() {
                 <NavLinks />
               </nav>
             )}
-          </>
+          </div>
         )}
       </div>
     </header>
