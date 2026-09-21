@@ -7,6 +7,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 const GA_TRACKING_ID = "G-RVL8C302NE";
 
@@ -53,6 +54,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </Script>
         <Header />
         <Component {...pageProps} />
+        <Analytics />
         <section className="pt-10">
           <Footer />
         </section>
