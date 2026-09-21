@@ -186,6 +186,27 @@ export default function ProjectCaseStudyPage({ project }: { project: Project }) 
   const ogImageAlt = heroImage?.src ? heroImage.alt : `${project.title} case study`;
   const keywords = [project.eyebrow, ...project.techStack].join(", ");
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.description,
+    url,
+    image: ogImage,
+    genre: "Case study",
+    keywords: keywords,
+    about: project.eyebrow,
+    author: {
+      "@type": "Person",
+      name: "Sai Navaneeth V",
+      alternateName: "Navaneeth Vijay",
+      url: SITE_URL,
+    },
+    ...([project.websiteUrl, project.githubUrl].filter(Boolean).length
+      ? { sameAs: [project.websiteUrl, project.githubUrl].filter(Boolean) }
+      : {}),
+  };
+
   const caseStudy = project.caseStudy;
   const tocItems: TocItem[] = [{ id: "how-it-works", label: "How it works" }];
   if (caseStudy) {
@@ -229,6 +250,10 @@ export default function ProjectCaseStudyPage({ project }: { project: Project }) 
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
         <meta name="twitter:image:alt" content={ogImageAlt} />
+
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
       </Head>
 
       <div className="container mx-auto px-6 md:px-0 py-20 md:py-28">

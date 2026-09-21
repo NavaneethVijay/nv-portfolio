@@ -2,9 +2,8 @@ import React from "react";
 import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types";
 import { Highlight, themes } from "prism-react-renderer";
 import { documentToReactComponents, Options } from "@contentful/rich-text-react-renderer";
-import RenderImage from "./renderImage";
 
-export default function parsedContent(content: Document) {
+export default function parsedContent(content: Document, assets: Record<string, any> = {}) {
   const Bold: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     <strong className="font-semibold text-ink">{children}</strong>
   );
@@ -61,7 +60,22 @@ export default function parsedContent(content: Document) {
       [BLOCKS.HEADING_3]: (node: any, children: any) => (
         <h3 className="font-display text-xl font-semibold text-ink mt-10 mb-2">{children}</h3>
       ),
-      [BLOCKS.EMBEDDED_ASSET]: (node: any) => <RenderImage node={node} />,
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        const id = node.data?.target?.sys?.id;
+        const asset = id ? assets[id] : undefined;
+        if (!asset?.url) return null;
+
+        return (
+          <img
+            src={asset.url}
+            width={asset.width}
+            height={asset.height}
+            alt={asset.description || asset.title || ""}
+            loading="lazy"
+            className="w-full h-auto"
+          />
+        );
+      },
     },
     renderText: (text: string) => text.replace("!", "?"),
   } as Options;

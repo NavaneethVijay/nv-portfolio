@@ -50,31 +50,44 @@ export default function ProjectsPage() {
             variants={fadeUpItem}
             className="text-[15px] leading-[1.55] text-ink-mute max-w-[330px]"
           >
-            The full catalog, not just the highlights — AI tooling, production apps, systems
+            The full catalog, not just the highlights: AI tooling, production apps, systems
             software, and the tooling that keeps it all honest.
           </motion.p>
         </div>
       </motion.div>
 
-      <div className="flex flex-col gap-8 lg:gap-10">
+      <motion.div
+        variants={fadeUpContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.08 }}
+        className="flex flex-col gap-8 lg:gap-10"
+      >
         {projects.map((project, i) => (
-          <WorkCard
-            key={project.title}
-            order={String(i + 1).padStart(2, "0")}
-            tone={TONES[i % TONES.length]}
-            title={project.title}
-            description={project.description}
-            href={project.websiteUrl ?? project.githubUrl}
-            caseStudyHref={project.slug ? `/projects/${project.slug}` : undefined}
-            technologies={project.techStack}
-            flow={project.flow}
-            eyebrow={project.eyebrow}
-            caption={project.caption}
-          />
+          <motion.div key={project.title} variants={fadeUpItem}>
+            <WorkCard
+              order={String(i + 1).padStart(2, "0")}
+              tone={TONES[i % TONES.length]}
+              title={project.title}
+              description={project.description}
+              href={project.websiteUrl ?? project.githubUrl}
+              caseStudyHref={project.slug ? `/projects/${project.slug}` : undefined}
+              technologies={project.techStack}
+              flow={project.flow}
+              eyebrow={project.eyebrow}
+              caption={project.caption}
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="flex justify-center mt-12">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.6 }}
+        variants={fadeUpItem}
+        className="flex justify-center mt-12"
+      >
         <a
           href="https://github.com/NavaneethVijay"
           target="_blank"
@@ -84,7 +97,7 @@ export default function ProjectsPage() {
           <IconBrandGithub className="h-4 w-4" />
           More on GitHub
         </a>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -12,7 +12,7 @@ import ContactMe from "@/components/project/contactMe";
 import ImpactStats from "@/components/project/ImpactStats";
 import { careerHistory } from "@/data/career";
 import { getAllPosts } from "@/lib/contentful";
-import { fadeUpItem } from "@/lib/motion";
+import { fadeUpContainer, fadeUpItem } from "@/lib/motion";
 
 interface Post {
   title: string;
@@ -40,8 +40,14 @@ export default function HomePage({ posts }: { posts: Post[] }) {
           <br />
           <em className="font-serif italic text-brand-text">software.</em>
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14">
-          <div className="md:col-span-7 text-ink-soft">
+        <motion.div
+          variants={fadeUpContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14"
+        >
+          <motion.div variants={fadeUpItem} className="md:col-span-7 text-ink-soft">
             <p className="mb-5 text-base md:text-lg leading-relaxed">
               I&apos;m a Staff-level Solution Architect and AI-native Full-Stack Engineer with 8+
               years of experience designing, scaling, and delivering high-performance web
@@ -65,8 +71,8 @@ export default function HomePage({ posts }: { posts: Post[] }) {
               If you&apos;re looking for someone who brings clarity, ownership, and
               results-oriented thinking to a project, let&apos;s connect.
             </p>
-          </div>
-          <div className="md:col-span-5 flex flex-col gap-4">
+          </motion.div>
+          <motion.div variants={fadeUpItem} className="md:col-span-5 flex flex-col gap-4">
             <div className="border border-border p-2 bg-paper-alt">
               <iframe
                 src="https://open.spotify.com/embed/track/3Fzlg5r1IjhLk2qRw667od?utm_source=generator"
@@ -89,9 +95,6 @@ export default function HomePage({ posts }: { posts: Post[] }) {
                 src="/bangalore.png"
                 alt="Bangalore skyline, where Navaneeth Vijay is based"
               />
-              <div className="absolute left-3 bottom-3 mono-label text-[10px] text-paper bg-ink/70 px-2 py-1">
-                home base — Bengaluru
-              </div>
             </div>
             <div className="flex items-center gap-3 mono-label text-[10px] text-ink-mute">
               <IconMapPin className="h-[18px] w-[18px] shrink-0" />
@@ -107,8 +110,8 @@ export default function HomePage({ posts }: { posts: Post[] }) {
                 by default
               </span>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* 02 Selected work */}
@@ -131,10 +134,17 @@ export default function HomePage({ posts }: { posts: Post[] }) {
           description="Responsibility is a trajectory. The work got bigger, the constraints got more interesting, and the questions got better."
         />
 
-        <div className="border-t border-border">
+        <motion.div
+          variants={fadeUpContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="border-t border-border"
+        >
           {careerHistory.map((entry) => (
-            <div
+            <motion.div
               key={entry.year}
+              variants={fadeUpItem}
               className="grid grid-cols-[auto_20px_1fr] sm:grid-cols-[110px_30px_1fr] gap-4 sm:gap-6 border-b border-border py-7 items-center"
             >
               <span className="font-serif text-base text-brand-text">{entry.year}</span>
@@ -154,9 +164,9 @@ export default function HomePage({ posts }: { posts: Post[] }) {
                 </h3>
                 <p className="text-sm text-ink-mute mt-0.5">{entry.company}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <Link
           href="/experience"
           className="inline-flex items-center gap-1 mt-8 mono-label text-xs text-ink-soft hover:text-brand-text transition-colors"
@@ -167,7 +177,7 @@ export default function HomePage({ posts }: { posts: Post[] }) {
       </section>
 
       {/* 05 Engineering notes */}
-      <section id="notes" className="container mx-auto px-6 md:px-0 py-20 md:py-28 border-b border-border">
+      <section id="notes" className="container mx-auto px-0  py-20 md:py-28 border-b border-border">
         <div className="bg-panel-sand text-panel-sand-fg p-8 md:p-14">
           <div className="flex items-center gap-6 mb-11 md:mb-14">
             <span className="text-[10px] font-bold text-brand-text">05</span>
@@ -188,10 +198,17 @@ export default function HomePage({ posts }: { posts: Post[] }) {
                 <br />
                 <em className="font-serif italic text-brand-text">worth trusting?</em>
               </motion.h2>
-              <p className="max-w-md text-sm md:text-base leading-relaxed text-panel-sand-fg/70">
+              <motion.p
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.4 }}
+                variants={fadeUpItem}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                className="max-w-md text-sm md:text-base leading-relaxed text-panel-sand-fg/70"
+              >
                 Notes on shipping software, engineering decisions, and the gaps between a diagram
                 and a thing that actually works.
-              </p>
+              </motion.p>
               <Link
                 href="/blog"
                 className="inline-flex items-center gap-2 mt-8 text-sm border-b border-panel-sand-fg pb-1 hover:text-brand-text hover:border-brand-text transition-colors w-fit"
@@ -199,30 +216,37 @@ export default function HomePage({ posts }: { posts: Post[] }) {
                 Read the notes <IconArrowUpRight className="h-[15px] w-[15px]" />
               </Link>
             </div>
-            <IconBook2 className="h-16 w-16 shrink-0 text-brand-text" strokeWidth={1} />
+            <IconBook2 className="hidden md:block h-16 w-16 shrink-0 text-brand-text" strokeWidth={1} />
           </div>
 
           {posts && posts.length > 0 && (
-            <div className="mt-10 pt-10 border-t border-panel-sand-fg/20">
+            <motion.div
+              variants={fadeUpContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.2 }}
+              className="mt-10 pt-10 border-t border-panel-sand-fg/20"
+            >
               {posts.map((post) => (
-                <Link
-                  key={post.path}
-                  href={`/blog/${post.path}`}
-                  className="flex flex-col md:flex-row md:items-center gap-1 md:gap-4 py-4 border-b border-panel-sand-fg/20 last:border-b-0 group"
-                >
-                  <span className="mono-label text-xs text-panel-sand-fg/60 w-[9rem] shrink-0">
-                    {new Date(post.publishedDate).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </span>
-                  <span className="font-display text-lg text-panel-sand-fg group-hover:text-brand-text transition-colors">
-                    {post.title}
-                  </span>
-                </Link>
+                <motion.div key={post.path} variants={fadeUpItem}>
+                  <Link
+                    href={`/blog/${post.path}`}
+                    className="flex flex-col md:flex-row md:items-center gap-1 md:gap-4 py-4 border-b border-panel-sand-fg/20 last:border-b-0 group"
+                  >
+                    <span className="mono-label text-xs text-panel-sand-fg/60 w-[9rem] shrink-0">
+                      {new Date(post.publishedDate).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
+                    <span className="font-display text-lg text-panel-sand-fg group-hover:text-brand-text transition-colors">
+                      {post.title}
+                    </span>
+                  </Link>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           )}
         </div>
       </section>
@@ -234,10 +258,16 @@ export default function HomePage({ posts }: { posts: Post[] }) {
 
       {/* Contact */}
       <section id="contact" className="container mx-auto px-6 md:px-0 py-20 md:py-28">
-        <div className="flex items-center gap-2 mono-label text-[12px] font-bold text-brand-text mb-10 md:mb-16">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={fadeUpItem}
+          className="flex items-center gap-2 mono-label text-[12px] font-bold text-brand-text mb-10 md:mb-16"
+        >
           <IconSparkles className="h-4 w-4" />
           Open to the right conversation
-        </div>
+        </motion.div>
         <motion.h2
           initial="hidden"
           whileInView="show"
@@ -249,12 +279,26 @@ export default function HomePage({ posts }: { posts: Post[] }) {
           <br />
           <em className="font-serif italic text-brand-text">complex?</em>
         </motion.h2>
-        <p className="text-base md:text-lg text-ink-mute mb-10 max-w-xl">
+        <motion.p
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={fadeUpItem}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          className="text-base md:text-lg text-ink-mute mb-10 max-w-xl"
+        >
           Drop your email below. I read everything.
-        </p>
-        <div className="max-w-4xl">
+        </motion.p>
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeUpItem}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          className="max-w-4xl"
+        >
           <ContactMe />
-        </div>
+        </motion.div>
       </section>
     </div>
   );

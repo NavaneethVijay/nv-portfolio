@@ -40,7 +40,7 @@ export default function WorkCard({
   const ExternalIcon = isGithub ? IconBrandGithub : IconExternalLink;
 
   const body = (
-    <article className="group relative grid grid-cols-1 md:grid-cols-[1.1fr_1fr] min-h-[420px] md:min-h-[400px] bg-transparent transition-colors duration-300 hover:bg-[color-mix(in_srgb,var(--brand-text)_7%,transparent)]">
+    <article className="group relative grid grid-cols-1 md:grid-cols-[1.1fr_1fr] min-h-[320px] md:min-h-[400px] h-full bg-transparent transition-colors duration-300 hover:bg-[color-mix(in_srgb,var(--brand-text)_7%,transparent)]">
       {caseStudyHref && showCaseStudyLink && (
         <Link href={caseStudyHref} aria-hidden="true" tabIndex={-1} className="absolute inset-0 z-0" />
       )}
@@ -57,15 +57,17 @@ export default function WorkCard({
           className="absolute inset-0 z-0"
         />
       )}
-      <div className="border border-border md:border-r-0 p-7 md:p-8 flex flex-col justify-between text-ink">
-        <span className="font-serif text-sm">{order}</span>
-        <div className="flex-1 flex items-center py-8">
+      <div className="border border-border md:border-r-0 p-5 md:p-8 flex flex-col gap-3 md:gap-0 md:justify-between text-ink">
+        <span className="order-1 font-serif text-sm">{order}</span>
+        <div className="relative z-10 order-3 md:order-2 md:flex-1 md:flex md:items-center md:py-8">
           <ProjectFlow steps={flow} label={title} tone={tone} />
         </div>
-        <span className="mono-label text-[10px] uppercase text-ink-mute">{caption}</span>
+        <span className="order-2 md:order-3 mono-label text-[10px] uppercase text-ink-mute">
+          {caption}
+        </span>
       </div>
 
-      <div className="border border-border p-8 md:p-8 lg:p-10 flex flex-col justify-center">
+      <div className="border border-border p-5 md:p-8 lg:p-10 flex flex-col justify-center">
         <div className="flex items-center justify-between gap-4 mono-label text-[10px] text-ink-mute mb-6">
           <span>{eyebrow}</span>
           <IconArrowUpRight className="h-[17px] w-[17px] shrink-0" aria-hidden="true" />

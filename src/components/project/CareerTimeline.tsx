@@ -1,4 +1,6 @@
 import React, { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { fadeUpContainer, fadeUpItem } from "@/lib/motion";
 
 export interface CareerEntry {
   year: string;
@@ -17,7 +19,10 @@ const Chip = ({ label }: { label: string }) => (
 
 function TimelineRow({ item }: { item: CareerEntry }) {
   return (
-    <div className="flex flex-col sm:grid sm:grid-cols-[110px_30px_1fr] gap-2 sm:gap-6 border-b border-border py-8 sm:items-start">
+    <motion.div
+      variants={fadeUpItem}
+      className="flex flex-col sm:grid sm:grid-cols-[110px_30px_1fr] gap-2 sm:gap-6 border-b border-border py-8 sm:items-start"
+    >
       {/* Mobile: year + dot stack as row one, content as row two.
           sm:contents drops this wrapper so year/dot become direct grid
           items again, restoring the original 3-column layout. */}
@@ -53,16 +58,22 @@ function TimelineRow({ item }: { item: CareerEntry }) {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export default function CareerTimeline({ items }: { items: CareerEntry[] }) {
   return (
-    <div className="border-t border-border">
+    <motion.div
+      variants={fadeUpContainer}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      className="border-t border-border"
+    >
       {items.map((item) => (
         <TimelineRow key={item.year} item={item} />
       ))}
-    </div>
+    </motion.div>
   );
 }

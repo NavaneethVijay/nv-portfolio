@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { SectionLabel } from "./SectionHeadings";
-import { fadeUpItem } from "@/lib/motion";
+import { fadeUpContainer, fadeUpItem } from "@/lib/motion";
 
 interface Tool {
   name: string;
@@ -41,14 +41,28 @@ export function ProjectsGrid() {
             <br />
             <em className="font-serif italic text-brand-text">just tools.</em>
           </motion.h2>
-          <p className="mt-6 text-[15px] leading-[1.55] text-ink-mute max-w-xs">
+          <motion.p
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            variants={fadeUpItem}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+            className="mt-6 text-[15px] leading-[1.55] text-ink-mute max-w-xs"
+          >
             Still, these are the ones I reach for most often.
-          </p>
+          </motion.p>
         </div>
-        <div className="mt-11 md:mt-14 grid grid-cols-1 sm:grid-cols-2 content-start">
+        <motion.div
+          variants={fadeUpContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-11 md:mt-14 grid grid-cols-1 sm:grid-cols-2 content-start"
+        >
           {tools.map((tool, i) => (
-            <a
+            <motion.a
               key={tool.name}
+              variants={fadeUpItem}
               href={tool.href}
               target="_blank"
               rel="noopener noreferrer"
@@ -58,9 +72,9 @@ export function ProjectsGrid() {
                 {String(i + 1).padStart(2, "0")}
               </b>
               {tool.name}
-            </a>
+            </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

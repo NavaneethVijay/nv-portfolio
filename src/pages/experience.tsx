@@ -4,7 +4,9 @@ import EngagementsAccordion, { Engagement } from "@/components/project/Engagemen
 import { IconAward, IconCertificate, IconSchool } from "@tabler/icons-react";
 import React from "react";
 import Head from "next/head";
+import { motion } from "framer-motion";
 import { careerHistory } from "@/data/career";
+import { fadeUpContainer, fadeUpItem } from "@/lib/motion";
 
 const engagements: Engagement[] = [
   {
@@ -135,19 +137,26 @@ export default function Experience() {
           seoTitle="Certifications & Awards"
           description="Recognition along the way."
         />
-        <ul className="mt-10 space-y-px bg-border border border-border font-body">
+        <motion.ul
+          variants={fadeUpContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-10 space-y-px bg-border border border-border font-body"
+        >
           {certifications.map((certification) => (
-            <li
+            <motion.li
               key={certification.title}
+              variants={fadeUpItem}
               className="flex items-start gap-3 bg-paper-alt px-6 py-4"
             >
               {certification.icon}
               <span className="text-sm leading-snug text-ink-soft">
                 {certification.title}
               </span>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </section>
 
       <section className="mt-14 mb-10 md:mt-24">
@@ -158,7 +167,13 @@ export default function Experience() {
           seoTitle="Education"
           description="Every architecture diagram starts somewhere."
         />
-        <div className="mt-10 flex items-start gap-3 border border-border bg-paper-alt px-6 py-4 font-body">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={fadeUpItem}
+          className="mt-10 flex items-start gap-3 border border-border bg-paper-alt px-6 py-4 font-body"
+        >
           <IconSchool className="h-6 w-6 text-brand-text shrink-0" />
           <div>
             <h3 className="font-display font-semibold text-lg text-ink">
@@ -168,7 +183,7 @@ export default function Experience() {
               BNM Institute of Technology, Bengaluru
             </p>
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );

@@ -18,6 +18,15 @@ export default function Document() {
       "@type": "EducationalOrganization",
       name: "BNM Institute of Technology, Bengaluru",
     },
+    worksFor: {
+      "@type": "Organization",
+      name: "Codilar Technologies Pvt. Ltd.",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bengaluru",
+      addressCountry: "IN",
+    },
     knowsAbout: [
       "Solution Architecture",
       "Applied Artificial Intelligence",
@@ -38,6 +47,18 @@ export default function Document() {
       "B2B Champ Award (Meet Magento India)",
       "Adobe Experience Maker Award",
     ],
+  };
+
+  const websiteStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Sai Navaneeth V",
+    url: "https://www.navaneethvijay.in/",
+    publisher: {
+      "@type": "Person",
+      name: "Sai Navaneeth V",
+      alternateName: "Navaneeth Vijay",
+    },
   };
 
   const themeInitScript = `
@@ -107,6 +128,9 @@ export default function Document() {
 
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteStructuredData)}
         </script>
 
         <link rel="shortcut icon" href="/favicon.png" />

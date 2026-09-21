@@ -1,16 +1,15 @@
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import WorkCard from "./WorkCard";
-import WorkCardCompact from "./WorkCardCompact";
 import SectionHeadings from "./SectionHeadings";
 import { IconArrowUpRight, IconBrandGithub } from "@tabler/icons-react";
 import { projects, TONES } from "@/data/projects";
+import { fadeUpContainer, fadeUpItem } from "@/lib/motion";
 
-// Homepage shows a curated six: the first four get the full flow-diagram
-// treatment, the next two are shown lighter-weight. The full catalog lives
-// on /projects.
+// Homepage shows a curated four — the full catalog (including Roost and
+// Finance Analyst) lives on /projects.
 const featured = projects.slice(0, 4);
-const more = projects.slice(4, 6);
 
 export default function Work() {
   return (
@@ -20,41 +19,42 @@ export default function Work() {
         eyebrow="Selected work"
         title="Things I've built."
         emphasize="built."
-        description="Projects are where architecture meets reality. These are a few places I've spent time making the invisible systems visible, useful, and resilient."
+        descriptionSlot={
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 mono-label text-xs font-medium text-ink hover:text-brand-text transition-colors"
+          >
+            View all projects
+            <IconArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+        }
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-x-10 lg:gap-y-10">
+      <motion.div
+        variants={fadeUpContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        className="grid grid-cols-1 gap-8 lg:gap-10"
+      >
         {featured.map((project, i) => (
-          <WorkCard
-            key={project.title}
-            order={String(i + 1).padStart(2, "0")}
-            tone={TONES[i % TONES.length]}
-            title={project.title}
-            description={project.description}
-            href={project.websiteUrl ?? project.githubUrl}
-            caseStudyHref={project.slug ? `/projects/${project.slug}` : undefined}
-            showCaseStudyLink={false}
-            technologies={project.techStack}
-            flow={project.flow}
-            eyebrow={project.eyebrow}
-            caption={project.caption}
-          />
+          <motion.div key={project.title} variants={fadeUpItem} className="h-full">
+            <WorkCard
+              order={String(i + 1).padStart(2, "0")}
+              tone={TONES[i % TONES.length]}
+              title={project.title}
+              description={project.description}
+              href={project.websiteUrl ?? project.githubUrl}
+              caseStudyHref={project.slug ? `/projects/${project.slug}` : undefined}
+              showCaseStudyLink={false}
+              technologies={project.techStack}
+              flow={project.flow}
+              eyebrow={project.eyebrow}
+              caption={project.caption}
+            />
+          </motion.div>
         ))}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 lg:mt-10">
-        {more.map((project, i) => (
-          <WorkCardCompact
-            key={project.title}
-            order={String(featured.length + i + 1).padStart(2, "0")}
-            title={project.title}
-            description={project.description}
-            href={project.websiteUrl ?? project.githubUrl}
-            technologies={project.techStack}
-            eyebrow={project.eyebrow}
-          />
-        ))}
-      </div>
+      </motion.div>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-12">
         <Link

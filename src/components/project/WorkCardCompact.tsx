@@ -22,7 +22,7 @@ export default function WorkCardCompact({
   eyebrow,
 }: WorkCardCompactProps) {
   const body = (
-    <article className="group relative border border-border p-7 md:p-8 flex flex-col justify-between min-h-[260px] bg-transparent transition-colors duration-300 hover:bg-[color-mix(in_srgb,var(--brand-text)_7%,transparent)]">
+    <article className="group relative border border-border p-7 md:p-8 flex flex-col justify-between min-h-[260px] h-full bg-transparent transition-colors duration-300 hover:bg-[color-mix(in_srgb,var(--brand-text)_7%,transparent)]">
       <div>
         <div className="flex items-center justify-between gap-4 mono-label text-[10px] text-ink-mute mb-6">
           <span className="text-brand-text">{order}</span>

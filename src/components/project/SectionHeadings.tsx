@@ -26,6 +26,7 @@ export default function SectionHeadings({
   title,
   seoTitle,
   description,
+  descriptionSlot,
   id,
   index,
   eyebrow,
@@ -34,6 +35,9 @@ export default function SectionHeadings({
   title: string;
   seoTitle?: string;
   description?: string;
+  /** Renders in place of `description` when set — for a link or other
+   * non-text content in that slot (e.g. "View all projects"). */
+  descriptionSlot?: React.ReactNode;
   id?: string;
   index?: string;
   /** ALL CAPS masthead label, e.g. "Selected work". */
@@ -71,7 +75,7 @@ export default function SectionHeadings({
             )}
           </span>
         </motion.h2>
-        {description && (
+        {(descriptionSlot || description) && (
           <motion.p
             initial="hidden"
             whileInView="show"
@@ -80,7 +84,7 @@ export default function SectionHeadings({
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             className="text-[15px] leading-[1.55] text-ink-mute max-w-[330px]"
           >
-            {description}
+            {descriptionSlot ?? description}
           </motion.p>
         )}
       </div>

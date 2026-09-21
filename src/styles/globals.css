@@ -21,7 +21,7 @@ html {
 }
 @media (max-width: 768px) {
   .journal-shell {
-    padding: 0 0.5rem;
+    padding: 0;
   }
 }
 /* System fonts only — no webfont requests. A plain grotesk carries nearly

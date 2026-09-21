@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconChevronDown } from "@tabler/icons-react";
+import { fadeUpContainer, fadeUpItem } from "@/lib/motion";
 
 export interface Engagement {
   company: string;
@@ -35,11 +36,17 @@ export default function EngagementsAccordion({ engagements }: { engagements: Eng
   };
 
   return (
-    <div className="border border-border bg-paper-alt divide-y divide-border font-body">
+    <motion.div
+      variants={fadeUpContainer}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      className="border border-border bg-paper-alt divide-y divide-border font-body"
+    >
       {engagements.map((engagement, index) => {
         const isOpen = openSet.has(index);
         return (
-          <div key={engagement.company}>
+          <motion.div key={engagement.company} variants={fadeUpItem}>
             <button
               type="button"
               onClick={() => toggle(index)}
@@ -82,9 +89,9 @@ export default function EngagementsAccordion({ engagements }: { engagements: Eng
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
         );
       })}
-    </div>
+    </motion.div>
   );
 }
