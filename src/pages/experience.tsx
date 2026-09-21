@@ -1,67 +1,12 @@
 import SectionHeadings from "@/components/project/SectionHeadings";
-import ExperienceChat, { ChatExperience } from "@/components/project/ExperienceChat";
+import CareerTimeline from "@/components/project/CareerTimeline";
 import EngagementsAccordion, { Engagement } from "@/components/project/EngagementsAccordion";
 import { IconAward, IconCertificate, IconSchool } from "@tabler/icons-react";
 import React from "react";
 import Head from "next/head";
-
-// Oldest first — reads like a conversation building up to the present.
-const experiences: ChatExperience[] = [
-  {
-    year: "2018 - 2020",
-    prompt: "How did you get started, back in 2018?",
-    title: "Associate Software Developer",
-    company: "Codilar Technologies Pvt. Ltd.",
-    description: (
-      <div>
-        Started my career as an Associate Software Developer in an
-        e-commerce agency. Quickly adapted to Magento architecture and
-        started working on headless e-commerce projects, laying the
-        foundation for everything that followed.
-      </div>
-    ),
-    stack: ["Magento", "MVC Architecture", "Vue.js", "Knockout.js"],
-  },
-  {
-    year: "2020 - 2021",
-    prompt: "What came next?",
-    title: "Senior Magento Developer",
-    company: "Codilar Technologies Pvt. Ltd.",
-    description: (
-      <div>
-        Promoted to Senior Magento Developer as my interest in backend
-        development grew. Worked on Magento module development and
-        customization alongside frontend UI, completed a certification on
-        Magento Frontend, and handled multiple project deliveries while
-        helping the team resolve complex UI issues.
-      </div>
-    ),
-    stack: ["React.js", "PHP", "Magento", "Team Management", "Project Estimation"],
-  },
-  {
-    year: "2021 - Present",
-    prompt: "And what are you focused on these days?",
-    title: "Solution Architect / Technical Lead",
-    company: "Codilar Technologies Pvt. Ltd.",
-    description: (
-      <div>
-        Own technical architecture, full-stack product strategy, and
-        cloud-native deployment for high-scale platforms, managing
-        multi-million dollar transaction volumes and hundreds of thousands of
-        monthly active users. Designed custom state-management and
-        lazy-loading patterns that slashed initial page load times by 30%,
-        and built automated CI/CD pipelines that accelerated deployment
-        velocity by 40% across engineering teams. Set high-quality
-        engineering and testing standards across multiple projects, and
-        mentored 10+ junior and mid-level engineers into core system
-        contributors, all while architecting AI-native features such as RAG
-        pipelines, tool-calling agents, and knowledge graphs.
-      </div>
-    ),
-    stack: ["Next.js", "TypeScript", "GraphQL", "RAG / GenAI", "AWS", "Docker", "GitHub Actions"],
-    current: true,
-  },
-];
+import { motion } from "framer-motion";
+import { careerHistory } from "@/data/career";
+import { fadeUpContainer, fadeUpItem } from "@/lib/motion";
 
 const engagements: Engagement[] = [
   {
@@ -159,65 +104,86 @@ export default function Experience() {
         Navaneeth Vijay: Experience, Certifications, and Education
       </h1>
 
-      <section className="mt-20 pt-10">
+      <section className="pt-6 md:mt-20 md:pt-10">
         <SectionHeadings
+          index="01"
           title="Where I've worked"
+          emphasize="worked"
           seoTitle="Work Experience"
           description="Eight years, a lot of different hats."
         />
       </section>
 
       <div className="mt-10">
-        <ExperienceChat items={experiences} />
+        <CareerTimeline items={careerHistory} />
       </div>
 
-      <section className="mt-24">
+      <section className="mt-14 md:mt-24">
         <SectionHeadings
+          index="02"
           title="Enterprise work, up close"
+          emphasize="up close"
           seoTitle="Key Client Engagements"
           description="A few of the platforms I've architected for global clients. Tap one to open it up."
         />
         <EngagementsAccordion engagements={engagements} />
       </section>
 
-      <section className="mt-24">
+      <section className="mt-14 md:mt-24">
         <SectionHeadings
+          index="03"
           title="A few nice mentions"
+          emphasize="mentions"
           seoTitle="Certifications & Awards"
           description="Recognition along the way."
         />
-        <ul className="mt-10 space-y-4 font-body max-w-2xl mx-auto">
+        <motion.ul
+          variants={fadeUpContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-10 space-y-px bg-border border border-border font-body"
+        >
           {certifications.map((certification) => (
-            <li
+            <motion.li
               key={certification.title}
-              className="flex items-start gap-3 rounded-lg border border-border bg-card px-6 py-4"
+              variants={fadeUpItem}
+              className="flex items-start gap-3 bg-paper-alt px-6 py-4"
             >
               {certification.icon}
-              <span className="text-sm leading-snug tracking-wide text-ink-soft">
+              <span className="text-sm leading-snug text-ink-soft">
                 {certification.title}
               </span>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </section>
 
-      <section className="mt-24 mb-10">
+      <section className="mt-14 mb-10 md:mt-24">
         <SectionHeadings
+          index="04"
           title="Where it started"
+          emphasize="started"
           seoTitle="Education"
           description="Every architecture diagram starts somewhere."
         />
-        <div className="mt-10 flex items-start gap-3 rounded-lg border border-border bg-card px-6 py-4 max-w-2xl mx-auto font-body">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={fadeUpItem}
+          className="mt-10 flex items-start gap-3 border border-border bg-paper-alt px-6 py-4 font-body"
+        >
           <IconSchool className="h-6 w-6 text-brand-text shrink-0" />
           <div>
-            <h3 className="font-bold text-lg text-ink">
+            <h3 className="font-display font-semibold text-lg text-ink">
               Bachelor of Engineering (B.E.) in Information Science and Technology
             </h3>
-            <p className="text-sm leading-snug tracking-wide text-ink-soft">
+            <p className="text-sm leading-snug text-ink-soft">
               BNM Institute of Technology, Bengaluru
             </p>
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );

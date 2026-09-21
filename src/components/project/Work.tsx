@@ -1,105 +1,75 @@
 import React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import WorkCard from "./WorkCard";
-import {
-  IconBrandGithub,
-  IconBuildingSkyscraper,
-  IconDatabaseDollar,
-  IconDeviceDesktop,
-  IconMailFast,
-  IconPhotoAi,
-  IconRobot,
-  IconTestPipe2,
-} from "@tabler/icons-react";
+import SectionHeadings from "./SectionHeadings";
+import { IconArrowUpRight, IconBrandGithub } from "@tabler/icons-react";
+import { projects, TONES } from "@/data/projects";
+import { fadeUpContainer, fadeUpItem } from "@/lib/motion";
 
-interface Project {
-  title: string;
-  description: string;
-  techStack: string[];
-  githubUrl?: string;
-  logoSvg?: React.ReactNode;
-  tag?: string;
-}
-
-const projects: Project[] = [
-  {
-    title: "Flowmail",
-    description:
-      "An AI email productivity platform on Cloud Run with Supabase, integrating Gmail via OAuth. A Gemini-powered feature suggests board organization and automated rules with a human-in-the-loop accept/reject workflow.",
-    techStack: ["Next.js", "Node.js", "Supabase", "Gemini API"],
-    githubUrl: "https://www.flowmail.in/",
-    logoSvg: <IconMailFast className="h-6 w-6" />,
-    tag: "live demo",
-  },
-  {
-    title: "Drupal Copilot",
-    description:
-      "A working prototype of an LLM tool-calling agent that answers natural-language questions about a Drupal site's content and configuration, backed by a crawler that builds a searchable SQLite knowledge graph.",
-    techStack: ["Next.js", "OpenRouter", "SQLite"],
-    logoSvg: <IconRobot className="h-6 w-6" />,
-  },
-  {
-    title: "Rynto",
-    description:
-      "A live property management app in daily production, designed and shipped solo. A double-entry ledger tracks balances, with tenant KYC verification and row-level-security private storage.",
-    techStack: ["Expo / React Native", "TypeScript", "Supabase", "PostgreSQL"],
-    logoSvg: <IconBuildingSkyscraper className="h-6 w-6" />,
-  },
-  {
-    title: "Overwatch Node",
-    description:
-      "A native macOS menu bar app in Swift that exposes running apps and system state over a local WebSocket server, paired with a React Native companion app for real-time switching over the local network.",
-    techStack: ["Swift", "React Native (Expo)", "WebSocket"],
-    githubUrl: "https://github.com/NavaneethVijay/Overwatch-Node",
-    logoSvg: <IconDeviceDesktop className="h-6 w-6" />,
-  },
-  {
-    title: "BackstopJS-UI",
-    description:
-      "A self-hosted visual regression testing tool built on top of BackstopJS, with a GitHub Actions pipeline that crawls a sitemap and deploys reference/test screenshots to Vercel. Built to catch visual regressions before they ship. This kind of automated gate is what let my teams push deployment velocity up 40% without trading away release confidence.",
-    techStack: ["Vite", "React", "Playwright", "BackstopJS"],
-    githubUrl: "https://github.com/NavaneethVijay/backstopjs-visual-testing",
-    logoSvg: <IconTestPipe2 className="h-6 w-6" />,
-  },
-  {
-    title: "Self-Hosted Image Optimizer",
-    description:
-      "A high-performance image optimization server inspired by Next.js's image pipeline, using GoogleChromeLabs' Squoosh under the hood to compress images on the fly. Born out of chasing page-load budgets on high-traffic platforms, the same instinct behind a 30% initial load-time improvement on production work.",
-    techStack: ["Node.js", "Squoosh"],
-    githubUrl: "https://github.com/NavaneethVijay/squoosh-image",
-    logoSvg: <IconPhotoAi className="h-6 w-6" />,
-  },
-  {
-    title: "Custom Ecommerce Cart Rules Generator",
-    description:
-      "A standalone cart rules engine built for heavy marketing campaigns, with API endpoints for direct sync with PIM and OMS systems.",
-    techStack: ["Node.js", "Redis", "PostgreSQL"],
-    githubUrl: "https://github.com/NavaneethVijay/rule-engine-api",
-    logoSvg: <IconDatabaseDollar className="h-6 w-6" />,
-  },
-];
+// Homepage shows a curated four — the full catalog (including Roost and
+// Finance Analyst) lives on /projects.
+const featured = projects.slice(0, 4);
 
 export default function Work() {
   return (
-    <div className="max-w-5xl mx-auto py-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 md:px-0">
-        {projects.map((project) => (
-          <WorkCard
-            key={project.title}
-            title={project.title}
-            description={project.description}
-            href={project.githubUrl}
-            technologies={project.techStack}
-            logoSvg={project.logoSvg}
-            tag={project.tag ?? (project.githubUrl?.includes("github.com") ? "on github" : undefined)}
-          />
+    <div>
+      <SectionHeadings
+        index="02"
+        eyebrow="Selected work"
+        title="Things I've built."
+        emphasize="built."
+        descriptionSlot={
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 mono-label text-xs font-medium text-ink hover:text-brand-text transition-colors"
+          >
+            View all projects
+            <IconArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+        }
+      />
+
+      <motion.div
+        variants={fadeUpContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        className="grid grid-cols-1 gap-8 lg:gap-10"
+      >
+        {featured.map((project, i) => (
+          <motion.div key={project.title} variants={fadeUpItem} className="h-full">
+            <WorkCard
+              order={String(i + 1).padStart(2, "0")}
+              tone={TONES[i % TONES.length]}
+              title={project.title}
+              description={project.description}
+              href={project.websiteUrl ?? project.githubUrl}
+              caseStudyHref={project.slug ? `/projects/${project.slug}` : undefined}
+              showCaseStudyLink={false}
+              technologies={project.techStack}
+              flow={project.flow}
+              eyebrow={project.eyebrow}
+              caption={project.caption}
+            />
+          </motion.div>
         ))}
-      </div>
-      <div className="flex justify-center mt-8">
+      </motion.div>
+
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-12">
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 mono-label text-xs font-medium text-ink-soft hover:text-brand-text transition-colors"
+        >
+          View all projects
+          <IconArrowUpRight className="h-4 w-4" />
+        </Link>
+        <span className="hidden sm:inline h-4 w-px bg-border" aria-hidden="true" />
         <a
           href="https://github.com/NavaneethVijay"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-medium text-ink-soft hover:text-brand transition-colors"
+          className="inline-flex items-center gap-2 mono-label text-xs font-medium text-ink-soft hover:text-brand-text transition-colors"
         >
           <IconBrandGithub className="h-4 w-4" />
           More on GitHub

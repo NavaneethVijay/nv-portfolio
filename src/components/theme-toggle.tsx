@@ -12,7 +12,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
       title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-      className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-ink-mute transition hover:-translate-y-0.5 hover:border-brand hover:text-brand"
+      className="flex h-8 w-8 items-center justify-center text-ink-mute transition hover:text-brand-text"
     >
       {theme === "light" ? (
         <IconMoon className="h-[18px] w-[18px]" />

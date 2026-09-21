@@ -2,11 +2,10 @@ import React from "react";
 import { BLOCKS, Document, MARKS } from "@contentful/rich-text-types";
 import { Highlight, themes } from "prism-react-renderer";
 import { documentToReactComponents, Options } from "@contentful/rich-text-react-renderer";
-import RenderImage from "./renderImage";
 
-export default function parsedContent(content: Document) {
+export default function parsedContent(content: Document, assets: Record<string, any> = {}) {
   const Bold: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-    <strong className="font-bold">{children}</strong>
+    <strong className="font-semibold text-ink">{children}</strong>
   );
 
   const options = {
@@ -49,17 +48,34 @@ export default function parsedContent(content: Document) {
       },
     },
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node: any, children: any) => <p className=" my-4 text-md">{children}</p>,
+      [BLOCKS.PARAGRAPH]: (node: any, children: any) => (
+        <p className="my-4 text-base leading-relaxed text-ink-soft">{children}</p>
+      ),
       [BLOCKS.HEADING_1]: (node: any, children: any) => (
-        <h1 className="text-3xl font-bold mt-10 mb-4">{children}</h1>
+        <h1 className="font-display text-3xl font-semibold text-ink mt-10 mb-4">{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (node: any, children: any) => (
-        <h2 className="text-2xl font-semibold mt-10 mb-3">{children}</h2>
+        <h2 className="font-display text-2xl font-semibold text-ink mt-10 mb-3">{children}</h2>
       ),
       [BLOCKS.HEADING_3]: (node: any, children: any) => (
-        <h3 className="text-xl font-semibold mt-10 mb-2">{children}</h3>
+        <h3 className="font-display text-xl font-semibold text-ink mt-10 mb-2">{children}</h3>
       ),
-      [BLOCKS.EMBEDDED_ASSET]: (node: any) => <RenderImage node={node} />,
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        const id = node.data?.target?.sys?.id;
+        const asset = id ? assets[id] : undefined;
+        if (!asset?.url) return null;
+
+        return (
+          <img
+            src={asset.url}
+            width={asset.width}
+            height={asset.height}
+            alt={asset.description || asset.title || ""}
+            loading="lazy"
+            className="w-full h-auto"
+          />
+        );
+      },
     },
     renderText: (text: string) => text.replace("!", "?"),
   } as Options;

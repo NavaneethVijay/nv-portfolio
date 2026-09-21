@@ -1,0 +1,31 @@
+# Sai Navaneeth V
+
+> Staff-level Solution Architect and AI-native Full-Stack Engineer based in Bengaluru, India, with 8+ years designing headless (MACH) architectures, microservices, and production-grade Applied AI systems.
+
+Sai Navaneeth V (also known as Navaneeth Vijay) is a Solution Architect / Technical Lead at Codilar Technologies, specializing in composable commerce, cloud-native architecture, and applied AI agent systems (RAG pipelines, tool-calling agents, knowledge graphs). He has led engineering for global enterprise clients, delivering measurable outcomes including a 40% increase in checkout conversions, a 30% reduction in last-mile operational failures, and 30% page-load performance gains.
+
+## Key pages
+
+- [Home](https://www.navaneethvijay.in/): Overview, background, impact metrics, and featured work.
+- [Projects](https://www.navaneethvijay.in/projects): Full list of shipped projects, including AI tooling, production apps, systems software, and developer tooling.
+- [Experience](https://www.navaneethvijay.in/experience): Work history, key client engagements, certifications, and education.
+- [Blog](https://www.navaneethvijay.in/blog): Notes on shipping software, engineering decisions, and applied AI.
+
+## Case studies
+
+- [Flowmail](https://www.navaneethvijay.in/projects/flowmail): An AI email productivity platform on Cloud Run with Supabase, integrating Gmail via OAuth. A Gemini-powered feature suggests board organization and automated rules with a human-in-the-loop accept/reject workflow.
+- [Drupal Copilot](https://www.navaneethvijay.in/projects/drupal-copilot): A working prototype of an LLM tool-calling agent that answers natural-language questions about a Drupal site's content and configuration, backed by a crawler that builds a searchable SQLite knowledge graph.
+- [Rynto](https://www.navaneethvijay.in/projects/rynto): A live property management app in daily production, designed and shipped solo. A double-entry ledger tracks balances, with tenant KYC verification and row-level-security private storage.
+
+## Other projects
+
+- Overwatch Node: A native macOS menu bar app in Swift that exposes running apps and system state over a local WebSocket server, paired with a React Native companion app.
+- Roost: A local-first desktop app that scans a developer's machine, surfaces git status and README per project, and safely cleans wasted node_modules/build space. A cross-platform Tauri rewrite of an earlier native Swift app.
+- Finance Analyst: A fully on-device personal finance app for Android that reconciles SMS parsing and quick entry against bank statements, with no server or cloud sync.
+- BackstopJS-UI: A self-hosted visual regression testing tool built on BackstopJS with a GitHub Actions pipeline that crawls a sitemap and deploys reference/test screenshots to Vercel.
+
+## Elsewhere
+
+- LinkedIn: https://www.linkedin.com/in/sai-navaneeth-v/
+- GitHub: https://github.com/NavaneethVijay
+- X / Twitter: https://twitter.com/navaneeth_V29

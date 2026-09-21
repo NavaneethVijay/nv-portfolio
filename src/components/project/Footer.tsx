@@ -41,29 +41,37 @@ export default function Footer() {
   );
 
   return (
-    <footer className="flex flex-col px-6 justify-center items-start max-w-2xl mx-auto w-full mb-6 mt-6">
-      <hr className="w-full border-border mb-8" />
-      <div className="w-full max-w-2xl grid grid-cols-3 gap-4 pb-10 sm:grid-cols-3">
-        <div className="flex flex-col space-y-4">{mainLinks.map(renderLink)}</div>
-        <div className="flex flex-col space-y-4">{professionalLinks.map(renderLink)}</div>
-        <div className="flex flex-col space-y-4 text-sm">
-          {personalLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-ink-mute hover:text-brand transition"
-            >
-              {link.text} <IconArrowUpRight className="inline-block w-3.5 h-3.5" />
-            </Link>
-          ))}
+    <footer className="border-t border-border">
+      <div className="container mx-auto px-6 md:px-0 max-w-5xl py-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 pb-10">
+          <div className="flex flex-col space-y-3">
+            <span className="mono-label text-xs text-ink-mute mb-1">Site</span>
+            {mainLinks.map(renderLink)}
+          </div>
+          <div className="flex flex-col space-y-3">
+            <span className="mono-label text-xs text-ink-mute mb-1">Elsewhere</span>
+            {professionalLinks.map(renderLink)}
+          </div>
+          <div className="flex flex-col space-y-3 text-sm">
+            <span className="mono-label text-xs text-ink-mute mb-1">Personal</span>
+            {personalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink-mute hover:text-brand transition"
+              >
+                {link.text} <IconArrowUpRight className="inline-block w-3.5 h-3.5" />
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="border-t border-border pt-6 flex items-center gap-1.5 text-sm text-ink-mute">
+          Built with care (and probably too much coffee)
+          <IconHeartFilled className="w-3.5 h-3.5 text-brand" />
         </div>
       </div>
-      <hr className="w-full border-border mb-6" />
-      <p className="flex text-lg font-hand flex-row text-ink-soft items-center gap-1">
-        Built with care (and probably too much coffee) <IconHeartFilled className="w-4 h-4 text-brand ml-1" />
-      </p>
     </footer>
   );
 }
