@@ -1,11 +1,13 @@
 import { GetServerSideProps } from "next";
 import { getAllPosts } from "@/lib/contentful";
+import { projects } from "@/data/projects";
 
 const SITE_URL = "https://www.navaneethvijay.in";
 
 function generateSitemap(posts: any[]) {
   const staticRoutes = [
     { path: "", changefreq: "weekly", priority: "1.0" },
+    { path: "projects", changefreq: "monthly", priority: "0.9" },
     { path: "experience", changefreq: "monthly", priority: "0.8" },
     { path: "blog", changefreq: "weekly", priority: "0.8" },
   ];
@@ -17,6 +19,18 @@ function generateSitemap(posts: any[]) {
     <loc>${SITE_URL}/${path}</loc>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
+  </url>`
+    )
+    .join("");
+
+  const projectUrls = projects
+    .filter((project) => project.slug)
+    .map(
+      (project) => `
+  <url>
+    <loc>${SITE_URL}/projects/${project.slug}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>${project.caseStudy ? "0.85" : "0.7"}</priority>
   </url>`
     )
     .join("");
@@ -34,7 +48,7 @@ function generateSitemap(posts: any[]) {
     .join("");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${staticUrls}${postUrls}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${staticUrls}${projectUrls}${postUrls}
 </urlset>`;
 }
 

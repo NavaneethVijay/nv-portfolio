@@ -86,8 +86,11 @@ export default function Document() {
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Sai Navaneeth V" />
+        <meta property="og:locale" content="en_US" />
 
         <meta property="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@navaneeth_V29" />
         <meta property="twitter:url" content="https://www.navaneethvijay.in/" />
         <meta
           property="twitter:title"

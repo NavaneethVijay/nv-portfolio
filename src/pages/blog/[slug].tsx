@@ -1,9 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { getAllPosts, getBlogPost } from "@/lib/contentful";
 import parsedContent from "@/components/parsedContent";
 import { IconArrowBack } from "@tabler/icons-react";
+import { fadeUpItem } from "@/lib/motion";
 
 function extractPlainText(node: any): string {
   if (!node) return "";
@@ -41,18 +43,24 @@ export default function BlogPostPage({ post }: any) {
 
       <div className="mt-20">
         <article className="container mx-auto md:py-10 px-6 md:px-4">
-          <div className="mb-4">
-            <Link className="text-ink-mute flex items-center gap-1 text-sm hover:text-brand transition-colors" href="/blog">
-              <IconArrowBack /> Back to Blog
+          <div className="mb-8">
+            <Link className="mono-label text-ink-mute flex items-center gap-1 text-xs hover:text-brand-text transition-colors" href="/blog">
+              <IconArrowBack className="h-4 w-4" /> Back to Blog
             </Link>
           </div>
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-xl md:text-4xl font-bold mb-4 font-display text-ink">
+            <motion.h1
+              initial="hidden"
+              animate="show"
+              variants={fadeUpItem}
+              className="text-2xl md:text-5xl font-semibold mb-4 font-display tracking-tight text-ink"
+            >
               {post.title}
-            </h1>
-            <div className="text-sm text-ink-mute flex gap-1">
-              <span>Navaneeth Vijay / </span>
-              <time className="block">
+            </motion.h1>
+            <div className="mono-label text-xs text-ink-mute flex gap-1.5 items-center border-b border-border pb-6">
+              <span>Navaneeth Vijay</span>
+              <span aria-hidden="true">&middot;</span>
+              <time>
                 {new Date(post.publishedDate).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
@@ -60,7 +68,7 @@ export default function BlogPostPage({ post }: any) {
                 })}
               </time>
             </div>
-            <div className="max-w-none font-body text-ink-soft mt-6">
+            <div className="max-w-none font-body text-ink-soft mt-8">
               {parsedContent(post.content.json)}
             </div>
           </div>

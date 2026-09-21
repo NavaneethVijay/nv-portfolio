@@ -16,36 +16,34 @@ export default function BlogIndex({ posts }: { posts: any[] }) {
         <link rel="canonical" href="https://www.navaneethvijay.in/blog" />
       </Head>
 
-      <section className="mt-20 pt-10">
+      <section className="pt-6 md:mt-20 md:pt-10">
         <SectionHeadings
+          index="01"
           title="From the blog"
+          emphasize="blog"
           seoTitle="Blog"
           description="Notes on shipping software, mostly."
         />
       </section>
-      <div className="py-10">
-        <div>
-          {posts.map((post) => (
-            <Link
-              key={post.path}
-              href={`/blog/${post.path}`}
-              className="flex flex-col space-y-1 mb-4"
-            >
-              <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-                <p className="text-ink-mute w-[200px] tabular-nums">
-                  {new Date(post.publishedDate).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
-                <p className="text-ink tracking-tight hover:text-brand transition-colors">
-                  {post.title}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
+      <div className="py-6 border-t border-border">
+        {posts.map((post) => (
+          <Link
+            key={post.path}
+            href={`/blog/${post.path}`}
+            className="flex flex-col md:flex-row md:items-center gap-1 md:gap-4 py-4 border-b border-border group"
+          >
+            <span className="mono-label text-xs text-ink-mute w-[9rem] shrink-0">
+              {new Date(post.publishedDate).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </span>
+            <span className="text-ink font-body group-hover:text-brand-text transition-colors">
+              {post.title}
+            </span>
+          </Link>
+        ))}
       </div>
     </div>
   );

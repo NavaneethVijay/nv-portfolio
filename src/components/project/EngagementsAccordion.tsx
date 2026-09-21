@@ -10,7 +10,7 @@ export interface Engagement {
 }
 
 const Chip = ({ label }: { label: string }) => (
-  <span className="leading-5 border border-chip-border text-chip-text bg-chip rounded-md text-sm mr-2 mb-2 px-2 py-0.5 inline-block">
+  <span className="mono-label leading-5 border border-chip-border text-chip-text bg-chip text-[10.5px] mr-2 mb-2 px-2 py-0.5 inline-block">
     {label}
   </span>
 );
@@ -35,7 +35,7 @@ export default function EngagementsAccordion({ engagements }: { engagements: Eng
   };
 
   return (
-    <div className="rounded-xl border border-border bg-card divide-y divide-border overflow-hidden font-body">
+    <div className="border border-border bg-paper-alt divide-y divide-border font-body">
       {engagements.map((engagement, index) => {
         const isOpen = openSet.has(index);
         return (
@@ -44,10 +44,10 @@ export default function EngagementsAccordion({ engagements }: { engagements: Eng
               type="button"
               onClick={() => toggle(index)}
               aria-expanded={isOpen}
-              className="w-full flex items-center justify-between gap-4 px-6 py-4 text-left hover:bg-paper-alt transition-colors"
+              className="w-full flex items-center justify-between gap-4 px-6 py-4 text-left transition-colors hover:bg-[color-mix(in_srgb,var(--brand-text)_6%,transparent)]"
             >
               <div>
-                <h3 className="font-display font-bold text-ink text-base sm:text-lg">
+                <h3 className="font-display font-semibold text-ink text-base sm:text-lg">
                   {engagement.company}
                 </h3>
                 <p className="text-sm text-brand-text font-medium mt-0.5">{engagement.role}</p>

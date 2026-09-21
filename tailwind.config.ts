@@ -15,10 +15,11 @@ const config = {
   prefix: "",
   theme: {
     fontFamily: {
-      display: ["var(--font-display)", "system-ui", "sans-serif"],
-      hand: ["var(--font-hand)", "cursive"],
-      body: ["var(--font-body)", "system-ui", "sans-serif"],
-      sans: ["var(--font-body)", "system-ui", "sans-serif"],
+      display: ["var(--font-display)", "Arial", "Helvetica", "sans-serif"],
+      body: ["var(--font-body)", "Arial", "Helvetica", "sans-serif"],
+      sans: ["var(--font-body)", "Arial", "Helvetica", "sans-serif"],
+      mono: ["var(--font-mono)", "Arial", "Helvetica", "sans-serif"],
+      serif: ["var(--font-serif)", "Georgia", "serif"],
     },
     container: {
       center: true,
@@ -73,6 +74,7 @@ const config = {
         brand: "var(--brand)",
         "brand-deep": "var(--brand-deep)",
         "brand-text": "var(--brand-text)",
+        "brand-on-dark": "var(--brand-on-dark)",
         ink: "var(--ink)",
         "ink-soft": "var(--ink-soft)",
         "ink-mute": "var(--ink-mute)",
@@ -81,6 +83,12 @@ const config = {
         chip: "var(--chip-bg)",
         "chip-border": "var(--chip-border)",
         "chip-text": "var(--chip-text)",
+        "panel-ink": "var(--panel-ink)",
+        "panel-ink-fg": "var(--panel-ink-fg)",
+        "panel-sand": "var(--panel-sand)",
+        "panel-sand-fg": "var(--panel-sand-fg)",
+        "panel-blue": "var(--panel-blue)",
+        "panel-blue-fg": "var(--panel-blue-fg)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -100,36 +108,11 @@ const config = {
           "0%, 49%": { opacity: "1" },
           "50%, 100%": { opacity: "0" },
         },
-        "spin-slow": {
-          to: { transform: "rotate(360deg)" },
-        },
-        marquee: {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-50%)" },
-        },
-        wiggle: {
-          "0%, 100%": { transform: "rotate(0deg)" },
-          "30%": { transform: "rotate(-8deg)" },
-          "70%": { transform: "rotate(8deg)" },
-        },
-        drift: {
-          "0%, 100%": { transform: "translate(0, 0)" },
-          "50%": { transform: "translate(18px, 22px)" },
-        },
-        "drift-alt": {
-          "0%, 100%": { transform: "translate(0, 0)" },
-          "50%": { transform: "translate(-16px, -14px)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         blink: "blink 1s step-end infinite",
-        "spin-slow": "spin-slow 18s linear infinite",
-        marquee: "marquee 26s linear infinite",
-        wiggle: "wiggle 0.5s ease",
-        drift: "drift 15s ease-in-out infinite",
-        "drift-alt": "drift-alt 17s ease-in-out infinite",
       },
     },
   },

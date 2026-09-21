@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Space_Grotesk, Work_Sans, Caveat } from "next/font/google";
 import Header from "@/components/project/Header";
 import Head from "next/head";
 import Footer from "@/components/project/Footer";
@@ -8,24 +7,6 @@ import Script from "next/script";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "@/components/theme-provider";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
-});
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-hand",
-});
-
-const workSans = Work_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body",
-});
 
 const GA_TRACKING_ID = "G-RVL8C302NE";
 
@@ -49,9 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider>
-      <div
-        className={`${spaceGrotesk.variable} ${caveat.variable} ${workSans.variable} font-body bg-paper text-ink`}
-      >
+      <div className="font-body bg-paper text-ink">
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <title>
