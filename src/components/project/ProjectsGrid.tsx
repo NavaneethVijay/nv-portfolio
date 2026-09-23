@@ -7,21 +7,21 @@ import { fadeUpContainer, fadeUpItem } from "@/lib/motion";
 interface Tool {
   name: string;
   href: string;
+  // One line on why it's on the list, shown under the name.
+  note: string;
 }
 
 // Same list and copy as the reference design — links point at each tool's
 // real product/site.
 const tools: Tool[] = [
-  { name: "Cursor", href: "https://cursor.com/" },
-  { name: "VS Code", href: "https://code.visualstudio.com/" },
-  { name: "Warp", href: "https://www.warp.dev/" },
-  { name: "Raycast", href: "https://www.raycast.com/" },
-  { name: "Arc", href: "https://arc.net/" },
-  { name: "Figma", href: "https://www.figma.com/" },
-  { name: "GitHub", href: "https://github.com/" },
-  { name: "Claude", href: "https://claude.ai/" },
-  { name: "ChatGPT", href: "https://chatgpt.com/" },
-  { name: "Gemini", href: "https://gemini.google.com/" },
+  { name: "Raycast", href: "https://www.raycast.com/", note: "Launcher, snippets and window management" },
+  { name: "Warp", href: "https://www.warp.dev/", note: "Terminal with blocks and command search" },
+  { name: "Figma", href: "https://www.figma.com/", note: "Sketching UI before building it" },
+  { name: "TickTick", href: "https://ticktick.com/", note: "Tasks and daily planning" },
+  { name: "Beekeeper Studio", href: "https://www.beekeeperstudio.io/", note: "One SQL client for every database" },
+  { name: "Bruno", href: "https://www.usebruno.com/", note: "API client, collections live in git" },
+  { name: "Blip", href: "https://blip.net/", note: "Sending files between devices" },
+  { name: "gitbar", href: "https://github.com/NavaneethVijay/gitbar", note: "PRs and CI from the menu bar, built by me" },
 ];
 
 export function ProjectsGrid() {
@@ -66,12 +66,15 @@ export function ProjectsGrid() {
               href={tool.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center py-4 border-b border-border text-[15px] hover:text-brand-text transition-colors"
+              className="flex items-baseline py-4 border-b border-border text-[15px] hover:text-brand-text transition-colors"
             >
               <b className="font-serif not-italic text-brand-text text-[11px] mr-4">
                 {String(i + 1).padStart(2, "0")}
               </b>
-              {tool.name}
+              <span className="flex flex-col gap-1">
+                {tool.name}
+                <span className="text-xs leading-snug text-ink-mute">{tool.note}</span>
+              </span>
             </motion.a>
           ))}
         </motion.div>

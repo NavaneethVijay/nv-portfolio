@@ -369,6 +369,16 @@ export const projects: Project[] = [
     },
   },
   {
+    title: "gitbar",
+    description:
+      "A native macOS menu bar app for git hosts: pin repos, see at a glance which ones need you, and drill into pull requests, reviewing, checking CI, and opening new PRs, without leaving the menu bar. Built on a provider-neutral core with GitHub (cloud and Enterprise Server) as the first module, background refresh that rides on ETag 304s so unchanged data costs no rate limit, and a notifications inbox with native macOS alerts.",
+    techStack: ["Swift", "SwiftUI", "AppKit", "GitHub REST + GraphQL"],
+    githubUrl: "https://github.com/NavaneethVijay/gitbar",
+    flow: ["Pinned Repos", "Provider Module", "ETag-cached Polling", "Status Ring + Inbox", "PR Review"],
+    eyebrow: "Developer Tooling / Desktop",
+    caption: "Git hosts in the menu bar",
+  },
+  {
     title: "Overwatch Node",
     description:
       "A native macOS menu bar app in Swift that exposes running apps and system state over a local WebSocket server, paired with a React Native companion app for real-time switching over the local network.",

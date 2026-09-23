@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { IconArrowUpRight, IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
+import { IconArrowUpRight, IconBrandGithub, IconExternalLink, IconStarFilled } from "@tabler/icons-react";
 import ProjectFlow from "./ProjectFlow";
 
 type Tone = "ink" | "sand" | "blue";
@@ -20,6 +20,8 @@ interface WorkCardProps {
   caption: string;
   flow: string[];
   eyebrow: string;
+  /** Marks a hand-picked showcase project with a "Featured" tag. */
+  featured?: boolean;
 }
 
 export default function WorkCard({
@@ -34,6 +36,7 @@ export default function WorkCard({
   caption,
   flow,
   eyebrow,
+  featured = false,
 }: WorkCardProps) {
   const isGithub = href?.includes("github.com");
   const externalLabel = isGithub ? "GitHub" : "Visit site";
@@ -69,7 +72,15 @@ export default function WorkCard({
 
       <div className="border border-border p-5 md:p-8 lg:p-10 flex flex-col justify-center">
         <div className="flex items-center justify-between gap-4 mono-label text-[10px] text-ink-mute mb-6">
-          <span>{eyebrow}</span>
+          <span className="flex flex-wrap items-center gap-3">
+            {featured && (
+              <span className="inline-flex items-center gap-1.5 border border-[color-mix(in_srgb,var(--brand-text)_45%,transparent)] px-2 py-1 text-brand-text">
+                <IconStarFilled className="h-3 w-3" aria-hidden="true" />
+                Featured
+              </span>
+            )}
+            <span>{eyebrow}</span>
+          </span>
           <IconArrowUpRight className="h-[17px] w-[17px] shrink-0" aria-hidden="true" />
         </div>
         <h3 className="font-display text-3xl md:text-4xl font-medium tracking-[-0.02em] text-ink group-hover:text-brand-text transition-colors mb-4">

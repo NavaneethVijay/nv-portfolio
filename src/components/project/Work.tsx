@@ -51,6 +51,7 @@ export default function Work() {
               flow={project.flow}
               eyebrow={project.eyebrow}
               caption={project.caption}
+              featured
             />
           </motion.div>
         ))}
